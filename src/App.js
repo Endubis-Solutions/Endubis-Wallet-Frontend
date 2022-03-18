@@ -1,11 +1,12 @@
 import React from "react";
 import "./App.css";
+import RestoreWallet from "./components/RestoreWallet";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Endubis Wallet</h1>
+        <RestoreWallet />
       </header>
     </div>
   );
