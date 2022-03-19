@@ -1,7 +1,8 @@
 import { Children, useState } from "react";
 
-function Wizard({ children = {} }) {
+function Wizard({ children = {}, noPrevOnFinalStep }) {
   const childrenArray = Children.toArray(children);
+  const stepCount = childrenArray.length;
   const [currentIndex, setCurrentIndex] = useState(0);
   const onPrev = () => {
     setCurrentIndex((step) => step - 1);
@@ -15,11 +16,14 @@ function Wizard({ children = {} }) {
     }
   };
   const currentPage = childrenArray[currentIndex];
+  const showPrev =
+    (!noPrevOnFinalStep && currentIndex > 0) ||
+    (noPrevOnFinalStep && currentIndex > 0 && currentIndex !== stepCount - 1);
   return (
     <div>
       <div>{currentPage}</div>
-      {currentIndex > 0 && <button onClick={onPrev}>Previous</button>}
-      {childrenArray.length - 1 > currentIndex && (
+      {showPrev && <button onClick={onPrev}>Previous</button>}
+      {stepCount - 1 > currentIndex && (
         <button onClick={onNext} disabled={!currentPage.props.isValid}>
           Next
         </button>

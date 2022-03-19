@@ -8,52 +8,44 @@ function RestoreWallet() {
   const [formData, setFormData] = useState({
     mnemonic: "",
     passphrase: "",
+    confirmPassphrase: "",
   });
   const [isValid, setIsValid] = useState({
     mnemonic: false,
     passphrase: false,
+    confirmPassphrase: false,
   });
   // useEffect(() => {
   //   console.log(formData);
   // }, [formData]);
 
-  const setMnemonic = (newMnemonic) => {
-    if (typeof newMnemonic === "function") {
+  const handleFormChange = (field, newValue) => {
+    if (typeof newValue === "function") {
       setFormData((oldFormData) => ({
         ...oldFormData,
-        mnemonic: newMnemonic(oldFormData.mnemonic),
+        [field]: newValue(oldFormData[field]),
       }));
     } else {
-      setFormData((oldFormData) => ({ ...oldFormData, mnemonic: newMnemonic }));
+      setFormData((oldFormData) => ({ ...oldFormData, [field]: newValue }));
     }
   };
 
-  const setPassphrase = (passphrase) => {
-    if (typeof passphrase === "function") {
-      setFormData((oldFormData) => ({
-        ...oldFormData,
-        passphrase: passphrase(oldFormData.mnemonic),
-      }));
-    } else {
-      setFormData((oldFormData) => ({
-        ...oldFormData,
-        passphrase,
-      }));
-    }
-  };
   return (
-    <Wizard>
+    <Wizard noPrevOnFinalStep={true}>
       <EnterMnemonic
         mnemonic={formData.mnemonic}
-        setMnemonic={setMnemonic}
+        handleFormChange={handleFormChange}
         isValid={isValid.mnemonic}
         setIsValid={(newIsValid) => setIsValid({ mnemonic: newIsValid })}
       />
       <CreatePassphrase
         passphrase={formData.passphrase}
-        setPassphrase={setPassphrase}
-        isValid={isValid.passphrase}
-        setIsValid={(newIsValid) => setIsValid({ passphrase: newIsValid })}
+        confirmPassphrase={formData.confirmPassphrase}
+        handleFormChange={handleFormChange}
+        isValid={isValid.confirmPassphrase}
+        setIsValid={(newIsValid) =>
+          setIsValid({ confirmPassphrase: newIsValid })
+        }
       />
       <Confirmation />
     </Wizard>

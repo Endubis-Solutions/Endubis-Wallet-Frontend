@@ -1,7 +1,7 @@
 import { useState } from "react";
 import allSeedWords from "../wordList";
 
-function EnterMnemonic({ mnemonic, setMnemonic, setIsValid }) {
+function EnterMnemonic({ mnemonic, handleFormChange, setIsValid }) {
   const [errorMsg, setErrorMsg] = useState("");
 
   const mnemonicValidator = (mnemonic) => {
@@ -28,7 +28,7 @@ function EnterMnemonic({ mnemonic, setMnemonic, setIsValid }) {
   };
   const onMnemonicChange = (e) => {
     const newMnemonic = e.target.value;
-    setMnemonic(newMnemonic);
+    handleFormChange("mnemonic", newMnemonic);
     setIsValid(mnemonicValidator(newMnemonic));
   };
   return (
