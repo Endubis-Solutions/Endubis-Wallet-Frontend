@@ -10,7 +10,7 @@ function CreatePassphrase({
   const onPassphraseChange = (e) => {
     const newPassphrase = e.target.value;
     handleFormChange("passphrase", newPassphrase);
-    setIsValid(passphraseValidator(newPassphrase));
+    passphraseValidator(newPassphrase);
   };
   const onConfirmPassphraseChange = (e) => {
     const newConfirmPassphrase = e.target.value;
