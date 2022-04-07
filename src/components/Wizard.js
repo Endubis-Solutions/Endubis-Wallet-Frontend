@@ -1,6 +1,6 @@
 import { Children, useState } from "react";
 
-function Wizard({ children = {}, noPrevOnFinalStep }) {
+function Wizard({ children = {}, noPrevOnFinalStep, onSubmit }) {
   const childrenArray = Children.toArray(children);
   const stepCount = childrenArray.length;
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -9,6 +9,9 @@ function Wizard({ children = {}, noPrevOnFinalStep }) {
   };
 
   const onNext = () => {
+    if (currentIndex === stepCount - 2) {
+      onSubmit();
+    }
     if (currentPage.props.isValid) {
       setCurrentIndex((step) => step + 1);
     } else if (currentPage.props.isValid === undefined) {
@@ -19,11 +22,13 @@ function Wizard({ children = {}, noPrevOnFinalStep }) {
   const showPrev =
     (!noPrevOnFinalStep && currentIndex > 0) ||
     (noPrevOnFinalStep && currentIndex > 0 && currentIndex !== stepCount - 1);
+
+  const notFinalIndex = stepCount - 1 > currentIndex;
   return (
     <div>
       <div>{currentPage}</div>
-      {showPrev && <button onClick={onPrev}>Previous</button>}
-      {stepCount - 1 > currentIndex && (
+      {showPrev && <button onClick={onPrev}>Back</button>}
+      {notFinalIndex && (
         <button onClick={onNext} disabled={!currentPage.props.isValid}>
           Next
         </button>
