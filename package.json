@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
     "bip39-light": "^1.0.7",
     "cardano-crypto.js": "^6.1.1",
     "react": "^17.0.2",

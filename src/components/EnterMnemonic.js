@@ -1,26 +1,60 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import allSeedWords from "../wordList";
+import styled from "@emotion/styled";
+import {
+  getValidLastWords,
+  sanitizeMnemonic,
+  validateMnemonic,
+} from "../utils/newWalletTools/helpers/mnemonicHelpers";
 
+const ErrorMessage = styled.div`
+  margin-top: 5px;
+  color: #9b2e2e;
+`;
 function EnterMnemonic({ mnemonic, handleFormChange, setIsValid }) {
   const [errorMsg, setErrorMsg] = useState("");
 
   const mnemonicValidator = (mnemonic) => {
-    const wordsArray = mnemonic.split(" ").filter((word) => word !== "");
+    if (!mnemonic) {
+      return;
+    }
+    const sanitizedMnemonic = sanitizeMnemonic(mnemonic);
+    const wordsArray = sanitizedMnemonic
+      .split(" ")
+      .filter((word) => word !== "");
+
     const allInvalidWords = wordsArray
-      .map((word) => word.trim().toLowerCase())
+      .map((word) => word.trim())
       .filter((word) => word && !allSeedWords.includes(word));
     const areValidWords = allInvalidWords.length === 0;
     if (!areValidWords) {
       setErrorMsg(
-        `Word${allInvalidWords.length > 1 ? "s" : ""} ${allInvalidWords.join(
-          ", "
-        )} ${allInvalidWords.length > 1 ? "are" : "is"} not valid.`
+        `<i>Word${
+          allInvalidWords.length > 1 ? "s" : ""
+        } <b><i>"${allInvalidWords.join(", ")}"</i></b> ${
+          allInvalidWords.length > 1 ? "are" : "is"
+        } not valid. ${
+          allInvalidWords.some((word) => word.toLowerCase() !== word)
+            ? "Try changing UPPERCASE letters to lowercase.</i>"
+            : ""
+        }`
       );
       return false;
     }
-    const isValidLength = wordsArray.length === 15; //Only 15 words for now
+    const isValidLength = [15, 24].includes(wordsArray.length); //Only 15 or 24 words
     if (!isValidLength) {
-      setErrorMsg("Seed phrase needs to be 15 words long.");
+      setErrorMsg("<i>Seed phrase needs to be 15 or 24 words long.</i>");
+      return false;
+    }
+
+    if (!validateMnemonic(sanitizedMnemonic)) {
+      const validWords = getValidLastWords(sanitizedMnemonic);
+      setErrorMsg(
+        `Seed checksum is invalid. <br />The final word can only be one of the following: <br /><i><b>${validWords.join(
+          ", "
+        )}</i></b>`
+      );
+      // setErrorMsg(`<i>Seed phrase is invalid.</i>`);
       return false;
     }
     setErrorMsg("");
@@ -29,13 +63,25 @@ function EnterMnemonic({ mnemonic, handleFormChange, setIsValid }) {
   const onMnemonicChange = (e) => {
     const newMnemonic = e.target.value;
     handleFormChange("mnemonic", newMnemonic);
-    setIsValid(mnemonicValidator(newMnemonic));
   };
+
+  useEffect(() => {
+    setIsValid(mnemonicValidator(mnemonic));
+  }, [mnemonic]);
   return (
-    <div>
-      <label>Enter your wallet mnemonic seed phrase</label>
-      <input type="text" value={mnemonic} onChange={onMnemonicChange} />
-      {errorMsg && <div className="error">{errorMsg}</div>}
+    <div className="flow-content">
+      <label>Enter the 15 or 24-word wallet mnemonic seed phrase</label>
+      <input
+        type="text"
+        value={mnemonic}
+        onChange={onMnemonicChange}
+        className="input fullwidth"
+      />
+      {errorMsg && (
+        <ErrorMessage
+          dangerouslySetInnerHTML={{ __html: errorMsg }}
+        ></ErrorMessage>
+      )}
     </div>
   );
 }

@@ -1,4 +1,18 @@
+import styled from "@emotion/styled";
 import { useState } from "react";
+
+const PassphraseForm = styled.form`
+  max-width: 600px;
+  margin: 0 auto;
+  label {
+    display: block;
+  }
+`;
+
+const ErrorMessage = styled.div`
+  margin-top: 5px;
+  color: #9b2e2e;
+`;
 
 function CreatePassphrase({
   passphrase,
@@ -32,22 +46,32 @@ function CreatePassphrase({
     return true;
   };
   return (
-    <div>
-      <div>
+    <PassphraseForm className="flow-content">
+      <div className="flow-content">
         <label>Enter a passphrase (10 characters or more)</label>
-        <input type="text" value={passphrase} onChange={onPassphraseChange} />
+        <input
+          className="input fullwidth"
+          type="password"
+          value={passphrase}
+          onChange={onPassphraseChange}
+        />
       </div>
-      <div>
+      <div className="flow-content">
         <label htmlFor="confirmPassphrase">Confirm passphrase</label>
         <input
-          type="text"
+          className="input fullwidth"
+          type="password"
           id="confirmPassphrase"
           value={confirmPassphrase}
           onChange={onConfirmPassphraseChange}
         />
       </div>
-      {errorMsg && <div className="error">{errorMsg}</div>}
-    </div>
+      {errorMsg && (
+        <ErrorMessage
+          dangerouslySetInnerHTML={{ __html: errorMsg }}
+        ></ErrorMessage>
+      )}
+    </PassphraseForm>
   );
 }
 export default CreatePassphrase;

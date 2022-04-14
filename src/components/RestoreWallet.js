@@ -57,14 +57,14 @@ function RestoreWallet() {
       const res = await sendXpubToBackend(accountXpub);
       console.log({ res });
       if (res.status === 200) {
-        setResult("Wallet restored successfully");
+        setResult("success");
         console.log("Wallet restored successfully");
       } else {
         throw new Error();
       }
     } catch (err) {
       console.log(err);
-      setResult("Error restoring wallet");
+      setResult("error");
     }
   };
 

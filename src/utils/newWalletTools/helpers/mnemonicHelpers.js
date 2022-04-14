@@ -33,6 +33,20 @@ function validateMnemonic(mnemonic) {
   }
 }
 
+function getValidLastWords(mnemonic) {
+  const mnemonicArray = mnemonic.split(" ");
+  const isValidLength = [15, 24].includes(mnemonicArray.length); //Only 15 and 24 words for now
+  if (isValidLength) {
+    const validLastWords = wordlists.EN.filter((word) => {
+      mnemonicArray.splice(-1, 1, word);
+      return validateMnemonic(mnemonicArray.join(" "));
+    });
+    return validLastWords;
+  } else {
+    throw Error("Mnemonic has invalid length");
+  }
+}
+
 function validatePaperWalletMnemonic(mnemonic) {
   return (
     !!mnemonic &&
@@ -101,4 +115,5 @@ export {
   isMnemonicInPaperWalletFormat,
   sanitizeMnemonic,
   mnemonicToWalletSecretDef,
+  getValidLastWords,
 };
