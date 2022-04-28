@@ -55,6 +55,7 @@ function Wizard({ children = {}, noPrevOnFinalStep, onSubmit }) {
   const stepCount = childrenArray.length;
   const [currentIndex, setCurrentIndex] = useState(0);
   const onPrev = () => {
+    currentPage.props.handleFormChange?.("mnemonic", "");
     setCurrentIndex((step) => step - 1);
   };
 
