@@ -4,10 +4,13 @@ import CreatePassphrase from "./CreatePassphrase";
 import Confirmation from "./Confirmation";
 import { useEffect, useState } from "react";
 import { mnemonicToXpub } from "../utils/newWalletTools/mnemonicToXpub";
+import CreateMnemonic from "./CreateMnemonic";
 
 const backendConnectURL = "/connect";
-function RestoreWallet() {
-  let userId = new URLSearchParams(window.location.search).get("userId");
+function RestoreWallet({ showCreate }) {
+  let sessionKey = new URLSearchParams(window.location.search).get(
+    "sessionKey"
+  );
 
   const [formData, setFormData] = useState({
     mnemonic: "",
@@ -16,6 +19,7 @@ function RestoreWallet() {
   });
   const [result, setResult] = useState(null);
   const [isValid, setIsValid] = useState({
+    generated: false,
     mnemonic: false,
     passphrase: false,
     confirmPassphrase: false,
@@ -42,7 +46,7 @@ function RestoreWallet() {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      body: JSON.stringify({ bech32xPub: xpub, userId }),
+      body: JSON.stringify({ bech32xPub: xpub, sessionKey }),
     };
 
     const res = await fetch(backendConnectURL, requestOptions);
@@ -70,6 +74,12 @@ function RestoreWallet() {
 
   return (
     <Wizard noPrevOnFinalStep={true} onSubmit={onSubmit}>
+      {showCreate && (
+        <CreateMnemonic
+          setIsValid={(newIsValid) => setIsValid({ generated: newIsValid })}
+          isValid={isValid.generated}
+        />
+      )}
       <EnterMnemonic
         mnemonic={formData.mnemonic}
         handleFormChange={handleFormChange}

@@ -13,7 +13,7 @@ const sanitizeMnemonic = (mnemonic) =>
   mnemonic.replace(/,/g, " ").replace(/\s+/g, " ").trim();
 
 function generateMnemonic(wordCount) {
-  wordCount = wordCount || 12;
+  wordCount = wordCount || 15;
 
   if (wordCount % 3 !== 0) {
     throw new Error(`Invalid mnemonic word count supplied: ${wordCount}`);
