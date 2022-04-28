@@ -55,8 +55,12 @@ const GlobalStyles = css`
     font-family: var(--ff-main);
     color: var(--text);
     padding: 1rem 1.5rem;
+    font-size: 1rem;
   }
-
+  input,
+  select {
+    font-size: 16px;
+  }
   main {
   }
 
@@ -114,7 +118,21 @@ const MainHeader = styled.header`
     letter-spacing: 1px;
   }
 `;
+const PageNotFound = styled.div`
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  h1 {
+    font-size: 40px;
+    font-weight: 200;
+    letter-spacing: 1px;
+  }
+`;
 function App() {
+  const hasSessionKey = !!new URLSearchParams(window.location.search).get(
+    "sessionKey"
+  );
+  const subUrl = window.location.href.split("?")[0].split("/").pop();
   return (
     <>
       <Global styles={GlobalStyles} />
@@ -122,7 +140,15 @@ function App() {
         <h1>🛅 Endubis Wallet</h1>
       </MainHeader>
       <main>
-        <RestoreWallet />
+        {hasSessionKey && subUrl === "restore" ? (
+          <RestoreWallet />
+        ) : hasSessionKey && subUrl === "create" ? (
+          <RestoreWallet showCreate={true} />
+        ) : (
+          <PageNotFound>
+            <h1>404: Page Not Found</h1>
+          </PageNotFound>
+        )}
       </main>
     </>
   );
