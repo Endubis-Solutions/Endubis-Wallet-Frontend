@@ -30,7 +30,10 @@ function Confirmation({ result }) {
           </div>
         </>
       ) : (
-        <h1>Loading...</h1>
+        <>
+          <h1>Loading your wallet...</h1>
+          <p>This may take a minute or two.</p>
+        </>
       )}
     </StyledConfirmation>
   );
