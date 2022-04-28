@@ -24,7 +24,7 @@ function CreatePassphrase({
   const onPassphraseChange = (e) => {
     const newPassphrase = e.target.value;
     handleFormChange("passphrase", newPassphrase);
-    passphraseValidator(newPassphrase);
+    setIsValid(passphraseValidator(newPassphrase, confirmPassphrase));
   };
   const onConfirmPassphraseChange = (e) => {
     const newConfirmPassphrase = e.target.value;
@@ -32,7 +32,7 @@ function CreatePassphrase({
     setIsValid(passphraseValidator(passphrase, newConfirmPassphrase));
   };
 
-  const passphraseValidator = (passphrase, confirmPassphrase = "") => {
+  const passphraseValidator = (passphrase, confirmPassphrase) => {
     const isEnoughLength = passphrase.length >= 10;
     if (!isEnoughLength) {
       setErrorMsg("Passphrase must be at least 10 characters");
