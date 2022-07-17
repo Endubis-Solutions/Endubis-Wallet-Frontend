@@ -1,0 +1,1178 @@
+{
+  "results": [
+    {
+      "bundleName": "client/build/static/js/main.3584ae5c.js",
+      "totalBytes": 1662473,
+      "mappedBytes": 1662324,
+      "unmappedBytes": 106,
+      "eolBytes": 2,
+      "sourceMapCommentBytes": 41,
+      "files": {
+        "../node_modules/@babel/runtime/helpers/arrayLikeToArray.js": {
+          "size": 189
+        },
+        "../node_modules/@babel/runtime/helpers/arrayWithoutHoles.js": {
+          "size": 139
+        },
+        "../node_modules/@babel/runtime/helpers/assertThisInitialized.js": {
+          "size": 202
+        },
+        "../node_modules/@babel/runtime/helpers/asyncToGenerator.js": {
+          "size": 395
+        },
+        "../node_modules/@babel/runtime/helpers/classCallCheck.js": {
+          "size": 173
+        },
+        "../node_modules/@babel/runtime/helpers/createClass.js": {
+          "size": 357
+        },
+        "../node_modules/@babel/runtime/helpers/createForOfIteratorHelper.js": {
+          "size": 740
+        },
+        "../node_modules/@babel/runtime/helpers/createSuper.js": {
+          "size": 284
+        },
+        "../node_modules/@babel/runtime/helpers/defineProperty.js": {
+          "size": 203
+        },
+        "../node_modules/@babel/runtime/helpers/get.js": {
+          "size": 461
+        },
+        "../node_modules/@babel/runtime/helpers/getPrototypeOf.js": {
+          "size": 278
+        },
+        "../node_modules/@babel/runtime/helpers/inherits.js": {
+          "size": 373
+        },
+        "../node_modules/@babel/runtime/helpers/isNativeReflectConstruct.js": {
+          "size": 336
+        },
+        "../node_modules/@babel/runtime/helpers/iterableToArray.js": {
+          "size": 194
+        },
+        "../node_modules/@babel/runtime/helpers/nonIterableSpread.js": {
+          "size": 252
+        },
+        "../node_modules/@babel/runtime/helpers/objectSpread2.js": {
+          "size": 672
+        },
+        "../node_modules/@babel/runtime/helpers/possibleConstructorReturn.js": {
+          "size": 286
+        },
+        "../node_modules/@babel/runtime/helpers/setPrototypeOf.js": {
+          "size": 241
+        },
+        "../node_modules/@babel/runtime/helpers/superPropBase.js": {
+          "size": 188
+        },
+        "../node_modules/@babel/runtime/helpers/toConsumableArray.js": {
+          "size": 162
+        },
+        "../node_modules/@babel/runtime/helpers/typeof.js": {
+          "size": 377
+        },
+        "../node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js": {
+          "size": 384
+        },
+        "../node_modules/@babel/runtime/regenerator/index.js": {
+          "size": 53
+        },
+        "../node_modules/asn1.js/lib/asn1.js": {
+          "size": 157
+        },
+        "../node_modules/asn1.js/lib/asn1/api.js": {
+          "size": 800
+        },
+        "../node_modules/asn1.js/lib/asn1/base/buffer.js": {
+          "size": 2345
+        },
+        "../node_modules/asn1.js/lib/asn1/base/index.js": {
+          "size": 129
+        },
+        "../node_modules/asn1.js/lib/asn1/base/node.js": {
+          "size": 8943
+        },
+        "../node_modules/asn1.js/lib/asn1/base/reporter.js": {
+          "size": 1554
+        },
+        "../node_modules/asn1.js/lib/asn1/constants/der.js": {
+          "size": 606
+        },
+        "../node_modules/asn1.js/lib/asn1/constants/index.js": {
+          "size": 173
+        },
+        "../node_modules/asn1.js/lib/asn1/decoders/der.js": {
+          "size": 3928
+        },
+        "../node_modules/asn1.js/lib/asn1/decoders/index.js": {
+          "size": 71
+        },
+        "../node_modules/asn1.js/lib/asn1/decoders/pem.js": {
+          "size": 614
+        },
+        "../node_modules/asn1.js/lib/asn1/encoders/der.js": {
+          "size": 4389
+        },
+        "../node_modules/asn1.js/lib/asn1/encoders/index.js": {
+          "size": 71
+        },
+        "../node_modules/asn1.js/lib/asn1/encoders/pem.js": {
+          "size": 340
+        },
+        "../node_modules/asn1.js/node_modules/bn.js/lib/bn.js": {
+          "size": 43219
+        },
+        "../node_modules/base64-js/index.js": {
+          "size": 1405
+        },
+        "../node_modules/bech32/index.js": {
+          "size": 2254
+        },
+        "../node_modules/bignumber.js/bignumber.js": {
+          "size": 18540
+        },
+        "../node_modules/bip39-light/index.js": {
+          "size": 1775
+        },
+        "../node_modules/bip39/src/_wordlists.js": {
+          "size": 648
+        },
+        "../node_modules/bip39/src/index.js": {
+          "size": 2557
+        },
+        "../node_modules/bn.js/lib/bn.js": {
+          "size": 44215
+        },
+        "../node_modules/borc/node_modules/buffer/index.js": {
+          "size": 20921
+        },
+        "../node_modules/borc/src/constants.js": {
+          "size": 766
+        },
+        "../node_modules/borc/src/decoder.asm.js": {
+          "size": 6711
+        },
+        "../node_modules/borc/src/decoder.js": {
+          "size": 10324
+        },
+        "../node_modules/borc/src/diagnose.js": {
+          "size": 3217
+        },
+        "../node_modules/borc/src/encoder.js": {
+          "size": 7186
+        },
+        "../node_modules/borc/src/index.js": {
+          "size": 399
+        },
+        "../node_modules/borc/src/simple.js": {
+          "size": 896
+        },
+        "../node_modules/borc/src/tagged.js": {
+          "size": 742
+        },
+        "../node_modules/borc/src/utils.js": {
+          "size": 1261
+        },
+        "../node_modules/brorand/index.js": {
+          "size": 912
+        },
+        "../node_modules/browserify-aes/aes.js": {
+          "size": 2894
+        },
+        "../node_modules/browserify-aes/authCipher.js": {
+          "size": 1975
+        },
+        "../node_modules/browserify-aes/browser.js": {
+          "size": 297
+        },
+        "../node_modules/browserify-aes/decrypter.js": {
+          "size": 1895
+        },
+        "../node_modules/browserify-aes/encrypter.js": {
+          "size": 1694
+        },
+        "../node_modules/browserify-aes/ghash.js": {
+          "size": 1061
+        },
+        "../node_modules/browserify-aes/incr32.js": {
+          "size": 147
+        },
+        "../node_modules/browserify-aes/modes/cbc.js": {
+          "size": 224
+        },
+        "../node_modules/browserify-aes/modes/cfb.js": {
+          "size": 468
+        },
+        "../node_modules/browserify-aes/modes/cfb1.js": {
+          "size": 431
+        },
+        "../node_modules/browserify-aes/modes/cfb8.js": {
+          "size": 269
+        },
+        "../node_modules/browserify-aes/modes/ctr.js": {
+          "size": 513
+        },
+        "../node_modules/browserify-aes/modes/ecb.js": {
+          "size": 138
+        },
+        "../node_modules/browserify-aes/modes/index.js": {
+          "size": 210
+        },
+        "../node_modules/browserify-aes/modes/ofb.js": {
+          "size": 273
+        },
+        "../node_modules/browserify-aes/streamCipher.js": {
+          "size": 391
+        },
+        "../node_modules/browserify-cipher/browser.js": {
+          "size": 987
+        },
+        "../node_modules/browserify-des/index.js": {
+          "size": 714
+        },
+        "../node_modules/browserify-des/modes.js": {
+          "size": 226
+        },
+        "../node_modules/browserify-rsa/index.js": {
+          "size": 698
+        },
+        "../node_modules/browserify-sign/algos.js": {
+          "size": 40
+        },
+        "../node_modules/browserify-sign/browser/index.js": {
+          "size": 1293
+        },
+        "../node_modules/browserify-sign/browser/sign.js": {
+          "size": 2175
+        },
+        "../node_modules/browserify-sign/browser/verify.js": {
+          "size": 1377
+        },
+        "../node_modules/browserify-sign/node_modules/safe-buffer/index.js": {
+          "size": 804
+        },
+        "../node_modules/buffer-xor/index.js": {
+          "size": 239
+        },
+        "../node_modules/buffer/index.js": {
+          "size": 25763
+        },
+        "../node_modules/cardano-crypto.js/features/address.js": {
+          "size": 3897
+        },
+        "../node_modules/cardano-crypto.js/features/crypto-primitives.js": {
+          "size": 2755
+        },
+        "../node_modules/cardano-crypto.js/features/key-derivation.js": {
+          "size": 3572
+        },
+        "../node_modules/cardano-crypto.js/features/paper-wallets.js": {
+          "size": 1537
+        },
+        "../node_modules/cardano-crypto.js/features/signing.js": {
+          "size": 732
+        },
+        "../node_modules/cardano-crypto.js/index.js": {
+          "size": 367
+        },
+        "../node_modules/cardano-crypto.js/lib.js": {
+          "size": 209262
+        },
+        "../node_modules/cardano-crypto.js/utils/CborIndefiniteLengthArray.js": {
+          "size": 305
+        },
+        "../node_modules/cardano-crypto.js/utils/base-x.js": {
+          "size": 933
+        },
+        "../node_modules/cardano-crypto.js/utils/base58.js": {
+          "size": 131
+        },
+        "../node_modules/cardano-crypto.js/utils/bech32.js": {
+          "size": 269
+        },
+        "../node_modules/cardano-crypto.js/utils/crc32.js": {
+          "size": 1001
+        },
+        "../node_modules/cardano-crypto.js/utils/pbkdf2.js": {
+          "size": 561
+        },
+        "../node_modules/cardano-crypto.js/utils/scrypt-async.js": {
+          "size": 7096
+        },
+        "../node_modules/cardano-crypto.js/utils/validation.js": {
+          "size": 1313
+        },
+        "../node_modules/cardano-crypto.js/utils/variableLengthEncode.js": {
+          "size": 229
+        },
+        "../node_modules/cipher-base/index.js": {
+          "size": 1386
+        },
+        "../node_modules/create-ecdh/browser.js": {
+          "size": 1613
+        },
+        "../node_modules/create-ecdh/node_modules/bn.js/lib/bn.js": {
+          "size": 43222
+        },
+        "../node_modules/create-hash/browser.js": {
+          "size": 354
+        },
+        "../node_modules/create-hash/md5.js": {
+          "size": 105
+        },
+        "../node_modules/create-hmac/browser.js": {
+          "size": 856
+        },
+        "../node_modules/create-hmac/legacy.js": {
+          "size": 549
+        },
+        "../node_modules/crypto-browserify/index.js": {
+          "size": 662
+        },
+        "../node_modules/des.js/lib/des.js": {
+          "size": 109
+        },
+        "../node_modules/des.js/lib/des/cbc.js": {
+          "size": 811
+        },
+        "../node_modules/des.js/lib/des/cipher.js": {
+          "size": 1915
+        },
+        "../node_modules/des.js/lib/des/des.js": {
+          "size": 1584
+        },
+        "../node_modules/des.js/lib/des/ede.js": {
+          "size": 780
+        },
+        "../node_modules/des.js/lib/des/utils.js": {
+          "size": 3239
+        },
+        "../node_modules/diffie-hellman/browser.js": {
+          "size": 534
+        },
+        "../node_modules/diffie-hellman/lib/dh.js": {
+          "size": 1965
+        },
+        "../node_modules/diffie-hellman/lib/generatePrime.js": {
+          "size": 992
+        },
+        "../node_modules/diffie-hellman/node_modules/bn.js/lib/bn.js": {
+          "size": 43222
+        },
+        "../node_modules/elliptic/lib/elliptic.js": {
+          "size": 156
+        },
+        "../node_modules/elliptic/lib/elliptic/curve/base.js": {
+          "size": 4688
+        },
+        "../node_modules/elliptic/lib/elliptic/curve/edwards.js": {
+          "size": 6141
+        },
+        "../node_modules/elliptic/lib/elliptic/curve/index.js": {
+          "size": 107
+        },
+        "../node_modules/elliptic/lib/elliptic/curve/mont.js": {
+          "size": 2572
+        },
+        "../node_modules/elliptic/lib/elliptic/curve/short.js": {
+          "size": 12589
+        },
+        "../node_modules/elliptic/lib/elliptic/curves.js": {
+          "size": 5062
+        },
+        "../node_modules/elliptic/lib/elliptic/ec/index.js": {
+          "size": 3155
+        },
+        "../node_modules/elliptic/lib/elliptic/ec/key.js": {
+          "size": 1706
+        },
+        "../node_modules/elliptic/lib/elliptic/ec/signature.js": {
+          "size": 1623
+        },
+        "../node_modules/elliptic/lib/elliptic/eddsa/index.js": {
+          "size": 1762
+        },
+        "../node_modules/elliptic/lib/elliptic/eddsa/key.js": {
+          "size": 1340
+        },
+        "../node_modules/elliptic/lib/elliptic/eddsa/signature.js": {
+          "size": 876
+        },
+        "../node_modules/elliptic/lib/elliptic/precomputed/secp256k1.js": {
+          "size": 26172
+        },
+        "../node_modules/elliptic/lib/elliptic/utils.js": {
+          "size": 1011
+        },
+        "../node_modules/elliptic/node_modules/bn.js/lib/bn.js": {
+          "size": 43218
+        },
+        "../node_modules/events/events.js": {
+          "size": 6039
+        },
+        "../node_modules/evp_bytestokey/index.js": {
+          "size": 581
+        },
+        "../node_modules/hash-base/index.js": {
+          "size": 1401
+        },
+        "../node_modules/hash-base/node_modules/safe-buffer/index.js": {
+          "size": 783
+        },
+        "../node_modules/hash.js/lib/hash.js": {
+          "size": 259
+        },
+        "../node_modules/hash.js/lib/hash/common.js": {
+          "size": 1402
+        },
+        "../node_modules/hash.js/lib/hash/hmac.js": {
+          "size": 738
+        },
+        "../node_modules/hash.js/lib/hash/ripemd.js": {
+          "size": 1964
+        },
+        "../node_modules/hash.js/lib/hash/sha.js": {
+          "size": 118
+        },
+        "../node_modules/hash.js/lib/hash/sha/1.js": {
+          "size": 934
+        },
+        "../node_modules/hash.js/lib/hash/sha/224.js": {
+          "size": 428
+        },
+        "../node_modules/hash.js/lib/hash/sha/256.js": {
+          "size": 1854
+        },
+        "../node_modules/hash.js/lib/hash/sha/384.js": {
+          "size": 519
+        },
+        "../node_modules/hash.js/lib/hash/sha/512.js": {
+          "size": 4418
+        },
+        "../node_modules/hash.js/lib/hash/sha/common.js": {
+          "size": 483
+        },
+        "../node_modules/hash.js/lib/hash/utils.js": {
+          "size": 2853
+        },
+        "../node_modules/hmac-drbg/lib/hmac-drbg.js": {
+          "size": 1756
+        },
+        "../node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js": {
+          "size": 985
+        },
+        "../node_modules/hoist-non-react-statics/node_modules/react-is/cjs/react-is.production.min.js": {
+          "size": 2151
+        },
+        "../node_modules/hoist-non-react-statics/node_modules/react-is/index.js": {
+          "size": 37
+        },
+        "../node_modules/ieee754/index.js": {
+          "size": 885
+        },
+        "../node_modules/inherits/inherits_browser.js": {
+          "size": 345
+        },
+        "../node_modules/iso-url/index.js": {
+          "size": 201
+        },
+        "../node_modules/iso-url/src/relative.js": {
+          "size": 513
+        },
+        "../node_modules/iso-url/src/url-browser.js": {
+          "size": 2491
+        },
+        "../node_modules/md5.js/index.js": {
+          "size": 3186
+        },
+        "../node_modules/miller-rabin/lib/mr.js": {
+          "size": 1263
+        },
+        "../node_modules/miller-rabin/node_modules/bn.js/lib/bn.js": {
+          "size": 43205
+        },
+        "../node_modules/minimalistic-assert/index.js": {
+          "size": 191
+        },
+        "../node_modules/minimalistic-crypto-utils/lib/utils.js": {
+          "size": 612
+        },
+        "../node_modules/object-assign/index.js": {
+          "size": 958
+        },
+        "../node_modules/parse-asn1/asn1.js": {
+          "size": 2274
+        },
+        "../node_modules/parse-asn1/certificate.js": {
+          "size": 1637
+        },
+        "../node_modules/parse-asn1/fixProc.js": {
+          "size": 693
+        },
+        "../node_modules/parse-asn1/index.js": {
+          "size": 2163
+        },
+        "../node_modules/path-browserify/index.js": {
+          "size": 4133
+        },
+        "../node_modules/pbkdf2/browser.js": {
+          "size": 60
+        },
+        "../node_modules/pbkdf2/lib/async.js": {
+          "size": 1467
+        },
+        "../node_modules/pbkdf2/lib/default-encoding.js": {
+          "size": 213
+        },
+        "../node_modules/pbkdf2/lib/precondition.js": {
+          "size": 312
+        },
+        "../node_modules/pbkdf2/lib/sync-browser.js": {
+          "size": 1205
+        },
+        "../node_modules/pbkdf2/lib/to-buffer.js": {
+          "size": 265
+        },
+        "../node_modules/process/browser.js": {
+          "size": 1682
+        },
+        "../node_modules/public-encrypt/browser.js": {
+          "size": 197
+        },
+        "../node_modules/public-encrypt/mgf.js": {
+          "size": 268
+        },
+        "../node_modules/public-encrypt/node_modules/bn.js/lib/bn.js": {
+          "size": 43209
+        },
+        "../node_modules/public-encrypt/privateDecrypt.js": {
+          "size": 1228
+        },
+        "../node_modules/public-encrypt/publicEncrypt.js": {
+          "size": 1007
+        },
+        "../node_modules/public-encrypt/withPublic.js": {
+          "size": 167
+        },
+        "../node_modules/public-encrypt/xor.js": {
+          "size": 125
+        },
+        "../node_modules/randombytes/browser.js": {
+          "size": 573
+        },
+        "../node_modules/randomfill/browser.js": {
+          "size": 1623
+        },
+        "../node_modules/react-dom/cjs/react-dom.production.min.js": {
+          "size": 118527
+        },
+        "../node_modules/react-dom/index.js": {
+          "size": 259
+        },
+        "../node_modules/react/cjs/react-jsx-runtime.production.min.js": {
+          "size": 676
+        },
+        "../node_modules/react/cjs/react.production.min.js": {
+          "size": 5979
+        },
+        "../node_modules/react/index.js": {
+          "size": 52
+        },
+        "../node_modules/react/jsx-runtime.js": {
+          "size": 49
+        },
+        "../node_modules/readable-stream/errors-browser.js": {
+          "size": 2111
+        },
+        "../node_modules/readable-stream/lib/_stream_duplex.js": {
+          "size": 1334
+        },
+        "../node_modules/readable-stream/lib/_stream_passthrough.js": {
+          "size": 197
+        },
+        "../node_modules/readable-stream/lib/_stream_readable.js": {
+          "size": 11717
+        },
+        "../node_modules/readable-stream/lib/_stream_transform.js": {
+          "size": 1937
+        },
+        "../node_modules/readable-stream/lib/_stream_writable.js": {
+          "size": 7284
+        },
+        "../node_modules/readable-stream/lib/internal/streams/async_iterator.js": {
+          "size": 1914
+        },
+        "../node_modules/readable-stream/lib/internal/streams/buffer_list.js": {
+          "size": 3032
+        },
+        "../node_modules/readable-stream/lib/internal/streams/destroy.js": {
+          "size": 1439
+        },
+        "../node_modules/readable-stream/lib/internal/streams/end-of-stream.js": {
+          "size": 1407
+        },
+        "../node_modules/readable-stream/lib/internal/streams/from-browser.js": {
+          "size": 122
+        },
+        "../node_modules/readable-stream/lib/internal/streams/pipeline.js": {
+          "size": 1010
+        },
+        "../node_modules/readable-stream/lib/internal/streams/state.js": {
+          "size": 332
+        },
+        "../node_modules/readable-stream/lib/internal/streams/stream-browser.js": {
+          "size": 53
+        },
+        "../node_modules/readable-stream/readable-browser.js": {
+          "size": 177
+        },
+        "../node_modules/regenerator-runtime/runtime.js": {
+          "size": 6533
+        },
+        "../node_modules/ripemd160/index.js": {
+          "size": 2732
+        },
+        "../node_modules/safe-buffer/index.js": {
+          "size": 761
+        },
+        "../node_modules/safer-buffer/safer.js": {
+          "size": 1216
+        },
+        "../node_modules/scheduler/cjs/scheduler.production.min.js": {
+          "size": 4412
+        },
+        "../node_modules/scheduler/index.js": {
+          "size": 40
+        },
+        "../node_modules/sha.js/hash.js": {
+          "size": 978
+        },
+        "../node_modules/sha.js/index.js": {
+          "size": 260
+        },
+        "../node_modules/sha.js/sha.js": {
+          "size": 1044
+        },
+        "../node_modules/sha.js/sha1.js": {
+          "size": 1078
+        },
+        "../node_modules/sha.js/sha224.js": {
+          "size": 602
+        },
+        "../node_modules/sha.js/sha256.js": {
+          "size": 2120
+        },
+        "../node_modules/sha.js/sha384.js": {
+          "size": 788
+        },
+        "../node_modules/sha.js/sha512.js": {
+          "size": 4392
+        },
+        "../node_modules/stream-browserify/index.js": {
+          "size": 1033
+        },
+        "../node_modules/string_decoder/lib/string_decoder.js": {
+          "size": 3606
+        },
+        "../node_modules/string_decoder/node_modules/safe-buffer/index.js": {
+          "size": 783
+        },
+        "../node_modules/util-deprecate/browser.js": {
+          "size": 318028
+        },
+        "../webpack/bootstrap": {
+          "size": 164
+        },
+        "../webpack/runtime/compat get default export": {
+          "size": 122
+        },
+        "../webpack/runtime/create fake namespace object": {
+          "size": 526
+        },
+        "../webpack/runtime/define property getters": {
+          "size": 107
+        },
+        "../webpack/runtime/global": {
+          "size": 167
+        },
+        "../webpack/runtime/hasOwnProperty shorthand": {
+          "size": 68
+        },
+        "../webpack/runtime/make namespace object": {
+          "size": 176
+        },
+        "../webpack/runtime/node module decorator": {
+          "size": 126
+        },
+        "../node_modules/@babel/runtime/helpers/esm/taggedTemplateLiteral.js": {
+          "size": 114
+        },
+        "../node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js": {
+          "size": 316
+        },
+        "../node_modules/@babel/runtime/helpers/esm/defineProperty.js": {
+          "size": 120
+        },
+        "../node_modules/@babel/runtime/helpers/esm/objectSpread2.js": {
+          "size": 575
+        },
+        "../node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js": {
+          "size": 106
+        },
+        "../node_modules/@babel/runtime/helpers/esm/unsupportedIterableToArray.js": {
+          "size": 287
+        },
+        "../node_modules/@babel/runtime/helpers/esm/slicedToArray.js": {
+          "size": 69
+        },
+        "../node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js": {
+          "size": 41
+        },
+        "../node_modules/@babel/runtime/helpers/esm/iterableToArrayLimit.js": {
+          "size": 311
+        },
+        "../node_modules/@babel/runtime/helpers/esm/nonIterableRest.js": {
+          "size": 172
+        },
+        "../node_modules/@babel/runtime/helpers/esm/extends.js": {
+          "size": 208
+        },
+        "../node_modules/@emotion/memoize/dist/emotion-memoize.browser.esm.js": {
+          "size": 104
+        },
+        "../node_modules/@emotion/is-prop-valid/dist/emotion-is-prop-valid.browser.esm.js": {
+          "size": 4157
+        },
+        "../node_modules/@emotion/sheet/dist/emotion-sheet.browser.esm.js": {
+          "size": 1305
+        },
+        "../node_modules/stylis/src/Utility.js": {
+          "size": 477
+        },
+        "../node_modules/stylis/src/Tokenizer.js": {
+          "size": 1283
+        },
+        "../node_modules/stylis/src/Enum.js": {
+          "size": 94
+        },
+        "../node_modules/stylis/src/Serializer.js": {
+          "size": 328
+        },
+        "../node_modules/stylis/src/Prefixer.js": {
+          "size": 2104
+        },
+        "../node_modules/stylis/src/Parser.js": {
+          "size": 1549
+        },
+        "../node_modules/@emotion/cache/dist/emotion-cache.browser.esm.js": {
+          "size": 1794
+        },
+        "../node_modules/stylis/src/Middleware.js": {
+          "size": 684
+        },
+        "../node_modules/@emotion/hash/dist/hash.browser.esm.js": {
+          "size": 557
+        },
+        "../node_modules/@emotion/unitless/dist/unitless.browser.esm.js": {
+          "size": 643
+        },
+        "../node_modules/@emotion/serialize/dist/emotion-serialize.browser.esm.js": {
+          "size": 1808
+        },
+        "../node_modules/@emotion/react/dist/emotion-element-cbed451f.browser.esm.js": {
+          "size": 264
+        },
+        "../node_modules/@emotion/utils/dist/emotion-utils.browser.esm.js": {
+          "size": 384
+        },
+        "../node_modules/@emotion/styled/base/dist/emotion-styled-base.browser.esm.js": {
+          "size": 1864
+        },
+        "../node_modules/@emotion/styled/dist/emotion-styled.browser.esm.js": {
+          "size": 1104
+        },
+        "components/Wizard.js": {
+          "size": 1716
+        },
+        "wordList.js": {
+          "size": 17238
+        },
+        "utils/newWalletTools/helpers/mnemonicHelpers.js": {
+          "size": 1360
+        },
+        "RestoreWallet/EnterMnemonic.js": {
+          "size": 1281
+        },
+        "RestoreWallet/CreatePassphrase.js": {
+          "size": 178
+        },
+        "RestoreWallet/Confirmation.js": {
+          "size": 958
+        },
+        "utils/newWalletTools/config.js": {
+          "size": 115
+        },
+        "../node_modules/@babel/runtime/helpers/esm/toConsumableArray.js": {
+          "size": 41
+        },
+        "../node_modules/@babel/runtime/helpers/esm/arrayWithoutHoles.js": {
+          "size": 44
+        },
+        "../node_modules/@babel/runtime/helpers/esm/iterableToArray.js": {
+          "size": 113
+        },
+        "../node_modules/@babel/runtime/helpers/esm/nonIterableSpread.js": {
+          "size": 167
+        },
+        "../node_modules/@babel/runtime/helpers/esm/createForOfIteratorHelper.js": {
+          "size": 669
+        },
+        "utils/newWalletTools/helpers/cryptoProvider.js": {
+          "size": 3355
+        },
+        "utils/newWalletTools/helpers/keyGenerator.js": {
+          "size": 418
+        },
+        "utils/newWalletTools/mnemonicToXpub.js": {
+          "size": 493
+        },
+        "RestoreWallet/CreateMnemonic.js": {
+          "size": 856
+        },
+        "RestoreWallet/index.js": {
+          "size": 1809
+        },
+        "../node_modules/@emotion/react/dist/emotion-react.browser.esm.js": {
+          "size": 874
+        },
+        "../node_modules/@babel/runtime/helpers/esm/classCallCheck.js": {
+          "size": 95
+        },
+        "../node_modules/@babel/runtime/helpers/esm/createClass.js": {
+          "size": 278
+        },
+        "../node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js": {
+          "size": 124
+        },
+        "../node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js": {
+          "size": 96
+        },
+        "../node_modules/@babel/runtime/helpers/esm/inherits.js": {
+          "size": 282
+        },
+        "../node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js": {
+          "size": 133
+        },
+        "../node_modules/@babel/runtime/helpers/esm/isNativeReflectConstruct.js": {
+          "size": 258
+        },
+        "../node_modules/@babel/runtime/helpers/esm/typeof.js": {
+          "size": 233
+        },
+        "../node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js": {
+          "size": 181
+        },
+        "../node_modules/@babel/runtime/helpers/esm/createSuper.js": {
+          "size": 176
+        },
+        "../node_modules/@babel/runtime/helpers/esm/construct.js": {
+          "size": 191
+        },
+        "../node_modules/@babel/runtime/helpers/esm/wrapNativeSuper.js": {
+          "size": 462
+        },
+        "../node_modules/@babel/runtime/helpers/esm/isNativeFunction.js": {
+          "size": 74
+        },
+        "../node_modules/@firebase/util/src/crypt.ts": {
+          "size": 2874
+        },
+        "../node_modules/@firebase/util/src/deferred.ts": {
+          "size": 377
+        },
+        "../node_modules/@firebase/util/src/environment.ts": {
+          "size": 972
+        },
+        "../node_modules/@firebase/util/src/errors.ts": {
+          "size": 795
+        },
+        "../node_modules/@firebase/util/src/obj.ts": {
+          "size": 349
+        },
+        "../node_modules/@firebase/util/src/compat.ts": {
+          "size": 42
+        },
+        "../node_modules/@firebase/util/src/indexeddb.ts": {
+          "size": 2217
+        },
+        "../node_modules/@firebase/component/src/component.ts": {
+          "size": 551
+        },
+        "../node_modules/@firebase/component/src/constants.ts": {
+          "size": 15
+        },
+        "../node_modules/@firebase/component/src/provider.ts": {
+          "size": 4679
+        },
+        "../node_modules/@firebase/logger/src/logger.ts": {
+          "size": 2648
+        },
+        "../node_modules/@firebase/component/src/component_container.ts": {
+          "size": 679
+        },
+        "../node_modules/@firebase/app/src/platformLoggerService.ts": {
+          "size": 440
+        },
+        "../node_modules/@firebase/app/src/logger.ts": {
+          "size": 27
+        },
+        "../node_modules/@firebase/app/src/constants.ts": {
+          "size": 1194
+        },
+        "../node_modules/@firebase/app/src/internal.ts": {
+          "size": 573
+        },
+        "../node_modules/@firebase/app/src/errors.ts": {
+          "size": 973
+        },
+        "../node_modules/@firebase/app/src/firebaseApp.ts": {
+          "size": 1026
+        },
+        "../node_modules/@firebase/app/src/api.ts": {
+          "size": 1219
+        },
+        "../node_modules/@firebase/app/src/indexeddb.ts": {
+          "size": 1303
+        },
+        "../node_modules/@firebase/app/src/heartbeatService.ts": {
+          "size": 4907
+        },
+        "../node_modules/@firebase/app/src/registerCoreComponents.ts": {
+          "size": 194
+        },
+        "../node_modules/@firebase/app/src/index.ts": {
+          "size": 3
+        },
+        "../node_modules/@babel/runtime/helpers/esm/superPropBase.js": {
+          "size": 94
+        },
+        "../node_modules/@babel/runtime/helpers/esm/get.js": {
+          "size": 240
+        },
+        "../node_modules/firebase/app/index.ts": {
+          "size": 33
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/base.js": {
+          "size": 1469
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/disposable/disposable.js": {
+          "size": 239
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/array/array.js": {
+          "size": 901
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/string/internal.js": {
+          "size": 749
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/labs/useragent/util.js": {
+          "size": 150
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/object/object.js": {
+          "size": 576
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/reflect/reflect.js": {
+          "size": 168
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/useragent/useragent.js": {
+          "size": 580
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/labs/useragent/browser.js": {
+          "size": 29
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/labs/useragent/engine.js": {
+          "size": 71
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/net/xhrio.js": {
+          "size": 3170
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/events/browserfeature.js": {
+          "size": 236
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/events/event.js": {
+          "size": 127
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/events/browserevent.js": {
+          "size": 1314
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/events/eventtype.js": {
+          "size": 25
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/events/listenable.js": {
+          "size": 85
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/events/listenablekey.js": {
+          "size": 8
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/events/listener.js": {
+          "size": 203
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/events/listenermap.js": {
+          "size": 716
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/events/events.js": {
+          "size": 1835
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/events/eventtarget.js": {
+          "size": 1000
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/json/json.js": {
+          "size": 25
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/async/workqueue.js": {
+          "size": 608
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/async/run.js": {
+          "size": 215
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/async/freelist.js": {
+          "size": 205
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/async/throwexception.js": {
+          "size": 57
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/timer/timer.js": {
+          "size": 792
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/async/throttle.js": {
+          "size": 453
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/events/eventhandler.js": {
+          "size": 470
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/labs/net/webchannel/webchanneldebug.js": {
+          "size": 1000
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/labs/net/webchannel/requeststats.js": {
+          "size": 842
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/net/errorcode.js": {
+          "size": 99
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/net/eventtype.js": {
+          "size": 334
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/net/xmlhttpfactory.js": {
+          "size": 74
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/labs/net/webchannel.js": {
+          "size": 449
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/net/xmlhttp.js": {
+          "size": 193
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/labs/net/webchannel/channelrequest.js": {
+          "size": 3746
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/labs/net/webchannel/environment.js": {
+          "size": 24
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/labs/net/webchannel/webchannelbase.js": {
+          "size": 6400
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/uri/uri.js": {
+          "size": 3410
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/disposable/dispose.js": {
+          "size": 35
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/labs/net/webchannel/wirev8.js": {
+          "size": 476
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/string/string.js": {
+          "size": 313
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/labs/net/webchannel/forwardchannelrequestpool.js": {
+          "size": 1141
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/structs/structs.js": {
+          "size": 558
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/structs/map.js": {
+          "size": 1076
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/uri/utils.js": {
+          "size": 498
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/labs/net/webchannel/wire.js": {
+          "size": 132
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/functions/functions.js": {
+          "size": 29
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/json/nativejsonprocessor.js": {
+          "size": 149
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/labs/net/webchannel/netutils.js": {
+          "size": 578
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/net/fetchxmlhttpfactory.js": {
+          "size": 2822
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/json/hybrid.js": {
+          "size": 21
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/net/httpstatus.js": {
+          "size": 103
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/net/rpc/httpcors.js": {
+          "size": 147
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/labs/net/webchannel/webchannelbasetransport.js": {
+          "size": 1445
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/labs/net/webchanneltransport.js": {
+          "size": 4
+        },
+        "../node_modules/@firebase/webchannel-wrapper/dist/temp/src/index.js": {
+          "size": 698
+        },
+        "../node_modules/@firebase/webchannel-wrapper/node_modules/google-closure-library/closure/goog/labs/net/webchanneltransportfactory.js": {
+          "size": 51
+        },
+        "../node_modules/@firebase/firestore/dist/index.esm2017.js": {
+          "size": 170429
+        },
+        "utils/firestoreInit.js": {
+          "size": 329
+        },
+        "utils/firestore.js": {
+          "size": 379
+        },
+        "Send/TxSummary.js": {
+          "size": 1321
+        },
+        "Send/SendConfirmation.js": {
+          "size": 958
+        },
+        "Send/index.js": {
+          "size": 1311
+        },
+        "App.js": {
+          "size": 2895
+        },
+        "index.js": {
+          "size": 102
+        },
+        "[sourceMappingURL]": {
+          "size": 41
+        },
+        "[unmapped]": {
+          "size": 106
+        },
+        "[EOLs]": {
+          "size": 2
+        }
+      }
+    }
+  ]
+}

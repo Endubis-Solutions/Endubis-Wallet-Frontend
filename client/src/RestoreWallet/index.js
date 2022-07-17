@@ -1,4 +1,4 @@
-import Wizard from "./Wizard";
+import Wizard from "../components/Wizard";
 import EnterMnemonic from "./EnterMnemonic";
 import CreatePassphrase from "./CreatePassphrase";
 import Confirmation from "./Confirmation";
@@ -50,7 +50,7 @@ function RestoreWallet({ showCreate }) {
     };
 
     const res = await fetch(backendConnectURL, requestOptions);
-    console.log(res);
+    // console.log(res);
     return res;
   };
   const onSubmit = async () => {
@@ -59,7 +59,7 @@ function RestoreWallet({ showCreate }) {
       const accountXpub = await mnemonicToXpub(formData.mnemonic);
       console.log(accountXpub);
       const res = await sendXpubToBackend(accountXpub);
-      console.log({ res });
+      // console.log({ res });
       if (res.status === 200) {
         setResult("success");
         console.log("Wallet restored successfully");
@@ -86,7 +86,7 @@ function RestoreWallet({ showCreate }) {
         isValid={isValid.mnemonic}
         setIsValid={(newIsValid) => setIsValid({ mnemonic: newIsValid })}
       />
-      <CreatePassphrase
+      {/* <CreatePassphrase
         passphrase={formData.passphrase}
         confirmPassphrase={formData.confirmPassphrase}
         handleFormChange={handleFormChange}
@@ -94,7 +94,7 @@ function RestoreWallet({ showCreate }) {
         setIsValid={(newIsValid) =>
           setIsValid({ confirmPassphrase: newIsValid })
         }
-      />
+      /> */}
       <Confirmation result={result} />
     </Wizard>
   );

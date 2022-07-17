@@ -1,7 +1,8 @@
 import React from "react";
-import RestoreWallet from "./components/RestoreWallet";
+import RestoreWallet from "./RestoreWallet";
 import styled from "@emotion/styled";
 import { Global, css } from "@emotion/react";
+import Send from "./Send";
 
 const GlobalStyles = css`
   :root {
@@ -144,6 +145,8 @@ function App() {
           <RestoreWallet />
         ) : hasSessionKey && subUrl === "create" ? (
           <RestoreWallet showCreate={true} />
+        ) : hasSessionKey && subUrl === "send" ? (
+          <Send />
         ) : (
           <PageNotFound>
             <h1>404: Page Not Found</h1>

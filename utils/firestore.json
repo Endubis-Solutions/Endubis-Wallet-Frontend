@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "endubis-wallet-bot",
+  "private_key_id": "bdfabe269793bc7ed59935108db7fb4182d9503f",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC3APRgdyFKI/P6\ng10N2WLqlPIx0P+hpC5CKfXVNF0RpZ35d/blqgCXNdjxfEF62Lg5FRnHwcGLeo9v\ncjjCaQNux7KIFu+Ig5JI117sVlSQXny61FkoPQZ3pLjiMS5LE9Yvv7X6pP5JZ9TA\ntT/2V3MwJXvG6IYrTD33FN4bPMEgcu27wBiZpjC+hDUacgxLtUWrb0tEC/boaQp+\n3sggywUiGDu6UAEfp+nRhgjFBQZTbxc8yiis84USj/ZLLRqUVnXE/Z8Quev2ekGY\nZmZFAXk1Y/w4GTTXTOl3LEWTahNAdJ8ktNQQtzXma4UojnctlfIfE0UDcwPwKKT2\nn/KJfSm9AgMBAAECggEANlxKu1L36QmYAjy+SgxelTcsYH7oSJA4C4BiXXRCBylu\nrTmk9iDTLxeYO1eBLegthQtPDqbwAqoj7GN+F8XQ9rnMPx+tBJysugV71XFpij7/\nBxJn74t9HdIo90vLqBKa57Ence5L+OsmaB4PA3KDrXQc+f99R2RM7dXdijK4XZY1\nHfO1BvDVDOOHRwiyo210UQEP4TUk+p6+MJUFC1Su4YDktMrG+d19kTjHZ/WqGZXi\n1rgvsGJxZvmMY/jDXvewhw4O/yqM6ncooVPmqdSs1IBOxzFWLMDk+LJ6C4CUsQ3r\noutVvSRuRFlwGaiVyXylHpkYJdwL6IENWPZ0J3Oy4wKBgQDrOUqQFoetpwWj1H2/\n73NJMAv8GYY66P5YaJyTsyOwIMjwAhgxd1pGfIERzbsPsYrGk/dubstlH2o3QOg5\ncyf507lCvsXpPpLoedF0ZaM46/pnmtoLRZWFnTYfmY4weHA51KBLrUMgdZwxW5Fz\nRjWZokHvFhK4OArAV3gTBTIe9wKBgQDHKua+MGTER9VNsad0Cgq+91y/tTdnONPJ\nj+1nkjU+0YMUBRL5YYKRcfVQe3do0XS+bcCiV232GcHBJoN00nowgOlIPlbRzmi+\nexRRJ7+h2g4tSzHts7wdU3uDgav22mtWxweu2ldq7QlQP7ov4inIzl845HOEikuy\nZrRz9OLr6wKBgE3KsrgYW2K4vArEeZoCbNQlibEkF9pft84xOqc2NXVIQmvtpWam\nnDp3bpAew+CazNSDlu70wVt+GjiPxL1LMktTFA/Y28cZpKgxsW2XN3XZxQSCl93m\nc16u8Xld5UJucl8NzL16XZrcin1gVSgUbiGTIc8aM7KtBhE6XEGeFEddAoGAeTLh\nMXFvkIYKBnqKZTHLMkSDG2Iicd0B/FFqbbFqV2zVcDRaRImTFAEeADjyBEYZ3dwZ\n8nBzyOQJpQlTy55dnvCDhWPyH0CVOvzY8z3V/p8cK3Hr0zOh0NLBgdhCFjj6Qtdh\nFIVn1vihx0TQf10IglsbVRqoNUqXH9wiCcJG6LsCgYEAm//mRQp1bmCYldAtnXdY\nWv3xaiP1pFOG+KAmn2I6Pl7ATtOGDsxkGRNGVcxil+ZJKu5UgnHHtGgnQuYdMfHE\nHRPxwloBUw3VKW2B2JKir8+IpEazkHbIy/gXn5zxEN9L5PtFUp6ye4eNZ/8XdqdS\noZuzNLUevEglPyEhWFVPll0=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-h3l54@endubis-wallet-bot.iam.gserviceaccount.com",
+  "client_id": "102443189402224944668",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-h3l54%40endubis-wallet-bot.iam.gserviceaccount.com"
+}
