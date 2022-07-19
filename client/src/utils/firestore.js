@@ -57,6 +57,15 @@ const getUserXpubsInfo = async (sessionKey) => {
   const sessionData = sessionDataDoc.data();
   return sessionData.XpubsInfo;
 };
+const getEncryptedMnemonicFromSession = async (sessionKey) => {
+  const docRef = doc(db, sessionDocName, "encryptedMnemonic");
+  const docSnap = await getDoc(docRef);
+  console.log({ exists: docSnap.data() });
+  if (!docSnap.exists()) {
+    return null;
+  }
+  return docSnap.data()[sessionKey];
+};
 
 const writeToSession = async (sessionKey, object) => {
   const sessionRef = db.collection(sessionDocName).doc(sessionKey);
@@ -73,4 +82,9 @@ const checkNewUser = async (sessionKey) => {
   }
   return true;
 };
-export { getUserXpubsInfo, writeToSession, getTxDataFromSession };
+export {
+  getUserXpubsInfo,
+  writeToSession,
+  getTxDataFromSession,
+  getEncryptedMnemonicFromSession,
+};

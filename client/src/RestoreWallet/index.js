@@ -5,6 +5,7 @@ import Confirmation from "./Confirmation";
 import { useEffect, useState } from "react";
 import { mnemonicToXpub } from "../utils/newWalletTools/mnemonicToXpub";
 import CreateMnemonic from "./CreateMnemonic";
+import { AESDecrypt, AESEncrypt } from "../utils/encryption";
 
 const backendConnectURL = "/connect";
 function RestoreWallet({ showCreate }) {
@@ -16,13 +17,16 @@ function RestoreWallet({ showCreate }) {
     mnemonic: "",
     passphrase: "",
     confirmPassphrase: "",
+    encryptMnemonic: false,
+    encryptedMnemonic: null,
+    spendingPassword: "",
   });
   const [result, setResult] = useState(null);
   const [isValid, setIsValid] = useState({
     generated: false,
     mnemonic: false,
     passphrase: false,
-    confirmPassphrase: false,
+    confirmPassphrase: true,
   });
   // useEffect(() => {
   //   console.log(formData);
@@ -35,10 +39,11 @@ function RestoreWallet({ showCreate }) {
         [field]: newValue(oldFormData[field]),
       }));
     } else {
+      console.log({ field, newValue });
       setFormData((oldFormData) => ({ ...oldFormData, [field]: newValue }));
     }
   };
-  const sendXpubToBackend = async (xpub) => {
+  const sendToBackend = async (xpub, encryptedMnemonic) => {
     console.log("sending to backend");
     const requestOptions = {
       method: "POST",
@@ -46,7 +51,7 @@ function RestoreWallet({ showCreate }) {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      body: JSON.stringify({ bech32xPub: xpub, sessionKey }),
+      body: JSON.stringify({ bech32xPub: xpub, sessionKey, encryptedMnemonic }),
     };
 
     const res = await fetch(backendConnectURL, requestOptions);
@@ -55,10 +60,21 @@ function RestoreWallet({ showCreate }) {
   };
   const onSubmit = async () => {
     try {
+      let mnemonic = formData.mnemonic;
+      if (formData.encryptedMnemonic && formData.spendingPassword) {
+        mnemonic = AESDecrypt(
+          formData.encryptedMnemonic,
+          formData.spendingPassword
+        );
+      }
+      const encryptedMnemonic =
+        formData.encryptMnemonic &&
+        AESEncrypt(formData.mnemonic, formData.passphrase);
+
       console.log("submitting fn");
-      const accountXpub = await mnemonicToXpub(formData.mnemonic);
+      const accountXpub = await mnemonicToXpub(mnemonic);
       console.log(accountXpub);
-      const res = await sendXpubToBackend(accountXpub);
+      const res = await sendToBackend(accountXpub, encryptedMnemonic);
       // console.log({ res });
       if (res.status === 200) {
         setResult("success");
@@ -82,8 +98,14 @@ function RestoreWallet({ showCreate }) {
       )}
       <EnterMnemonic
         mnemonic={formData.mnemonic}
+        encryptMnemonic={formData.encryptMnemonic}
+        passphrase={formData.passphrase}
+        confirmPassphrase={formData.confirmPassphrase}
+        encryptedMnemonic={formData.encryptedMnemonic}
+        spendingPassword={formData.spendingPassword}
         handleFormChange={handleFormChange}
         isValid={isValid.mnemonic}
+        isCreate={showCreate}
         setIsValid={(newIsValid) => setIsValid({ mnemonic: newIsValid })}
       />
       {/* <CreatePassphrase

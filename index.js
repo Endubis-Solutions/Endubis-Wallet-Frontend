@@ -10,9 +10,7 @@ const {
   writeToSession,
   userIdFromSessionKey,
 } = require("./utils/firestore");
-const {
-  getAddressesInfo,
-} = require("./utils/getAddressesInfo");
+const { getAddressesInfo } = require("./utils/getAddressesInfo");
 
 // const Cors = require("cors")
 
@@ -30,73 +28,81 @@ app.use((req, res, next) => {
   // console.log(req);
   next();
 });
-app.use(express.static(path.resolve(__dirname, './client/build')));
-app.get('/*', (req, res, next) => {
+app.use(express.static(path.resolve(__dirname, "./client/build")));
+app.get("/*", (req, res, next) => {
   res.sendFile(path.join(__dirname, "./client/build", "index.html"));
 });
 
-app.post("/bot", (req,res) => {
+app.post("/bot", (req, res) => {
   console.log("tamir", req.body);
   res.end();
 });
 app.post("/connect", async (req, res) => {
-  const { sessionKey, bech32xPub } = req.body;
+  const { sessionKey, bech32xPub, encryptedMnemonic } = req.body;
   if (sessionKey && bech32xPub) {
+    if (encryptedMnemonic) {
+      //TODO: how about multiple accounts
+      await writeToSession("encryptedMnemonic", {
+        [sessionKey]: encryptedMnemonic,
+      });
+    }
     //TODO: remove this and get address list via api
     await getAddressesInfo(bech32xPub, sessionKey);
     //TODO: handle invalid links (hopefully on frontend)
     const userId = userIdFromSessionKey(sessionKey);
     const userInfo = await bot.telegram.getChat(userId);
-    await writeToSession(sessionKey, {loggedInXpub:  bech32xPub, userInfo});
-      bot.telegram.sendMessage(
-        userId,
-        `🎉 You have been successfully logged in.`,
-        {
-          reply_markup: {
-            inline_keyboard: [[
+    await writeToSession(sessionKey, { loggedInXpub: bech32xPub, userInfo });
+    bot.telegram.sendMessage(
+      userId,
+      `🎉 You have been successfully logged in.`,
+      {
+        reply_markup: {
+          inline_keyboard: [
+            [
               {
                 text: "🏠 Go To Your Account",
                 callback_data: "back-to-menu",
               },
-            ]],
-          },
-        }
-      );
+            ],
+          ],
+        },
+      }
+    );
   }
   res.end();
 });
 app.post("/send", async (req, res) => {
   const { sessionKey, unsignedTxHex, signedTxHex } = req.body;
   if (sessionKey && unsignedTxHex && signedTxHex) {
-    require("dotenv").config({ path: path.join(__dirname, '.env') });
+    require("dotenv").config({ path: path.join(__dirname, ".env") });
     const walletBaseURL = process.env.WALLET_SERVER_URL;
     if (!walletBaseURL) {
       throw Error("WALLET_SERVER_URL env variable missing");
     }
-    let txBuffer = Buffer.from(signedTxHex, 'hex');
+    let txBuffer = Buffer.from(signedTxHex, "hex");
     const submitExternalUrl = `${walletBaseURL}/proxy/transactions`;
     const config = {
       headers: {
-        "Content-Type": "application/octet-stream"
+        "Content-Type": "application/octet-stream",
       },
-      timeout: 2000 
-    }
+      timeout: 2000,
+    };
     let statusCode, data;
-    try{
-       const res  = await axios.post(submitExternalUrl, txBuffer, config);
-       statusCode = res.status;
-       data = res.data;
-    }catch(e){
+    try {
+      const res = await axios.post(submitExternalUrl, txBuffer, config);
+      statusCode = res.status;
+      data = res.data;
+    } catch (e) {
       statusCode = e?.response?.status || 500;
       data = e?.response?.data || {};
-      console.log(e)
+      console.log(e);
     }
     const userIdFromSessionKey = (sessionKey) => sessionKey.split("-")[0];
-    const userId = userIdFromSessionKey(sessionKey);    
+    const userId = userIdFromSessionKey(sessionKey);
     const regex = /2\d\d/;
     const success = regex.test(statusCode);
     if (success) {
-            await writeToSession(sessionKey, { transactionId: data.id });
+      await writeToSession(sessionKey, { transactionId: data.id });
 
       bot.telegram.sendMessage(
         userId,
@@ -104,18 +110,20 @@ app.post("/send", async (req, res) => {
 Transaction ID: ${data.id}`,
         {
           reply_markup: {
-            inline_keyboard: [[
-              {
-                text: "More Details",
-                callback_data: "txnid",
-              },
+            inline_keyboard: [
+              [
+                {
+                  text: "More Details",
+                  callback_data: "txnid",
+                },
+              ],
+              [
+                {
+                  text: "🏠 Go To Your Account",
+                  callback_data: "back-to-menu",
+                },
+              ],
             ],
-            [
-              {
-                text: "🏠 Go To Your Account",
-                callback_data: "back-to-menu",
-              },
-            ]],
           },
         }
       );
@@ -126,18 +134,20 @@ Transaction ID: ${data.id}`,
 ${JSON.stringify(data)}`,
         {
           reply_markup: {
-            inline_keyboard: [[
-              {
-                text: "🏠 Go To Your Account",
-                callback_data: "back-to-menu",
-              },
-            ]],
+            inline_keyboard: [
+              [
+                {
+                  text: "🏠 Go To Your Account",
+                  callback_data: "back-to-menu",
+                },
+              ],
+            ],
           },
         }
       );
     }
 
-    res.status(statusCode).json({data});
+    res.status(statusCode).json({ data });
   }
   res.end();
 });

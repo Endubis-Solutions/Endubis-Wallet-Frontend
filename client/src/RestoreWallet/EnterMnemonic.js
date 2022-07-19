@@ -6,14 +6,29 @@ import {
   sanitizeMnemonic,
   validateMnemonic,
 } from "../utils/newWalletTools/helpers/mnemonicHelpers";
+import CreatePassphrase from "./CreatePassphrase";
+import { getEncryptedMnemonicFromSession } from "../utils/firestore";
 
 const ErrorMessage = styled.div`
   margin-top: 5px;
   color: #9b2e2e;
 `;
-function EnterMnemonic({ mnemonic, handleFormChange, setIsValid }) {
+function EnterMnemonic({
+  mnemonic,
+  encryptMnemonic,
+  handleFormChange,
+  setIsValid,
+  passphrase,
+  confirmPassphrase,
+  encryptedMnemonic,
+  isCreate,
+  spendingPassword,
+}) {
   const [errorMsg, setErrorMsg] = useState("");
-
+  // const [encryptMnemonic, setEncryptMnemonic] = useState(false);
+  let sessionKey = new URLSearchParams(window.location.search).get(
+    "sessionKey"
+  );
   const mnemonicValidator = (mnemonic) => {
     if (!mnemonic) {
       return;
@@ -64,19 +79,80 @@ function EnterMnemonic({ mnemonic, handleFormChange, setIsValid }) {
     const newMnemonic = e.target.value;
     handleFormChange("mnemonic", newMnemonic);
   };
+  const onSpendingPasswordChange = (e) => {
+    const newSpendingPassword = e.target.value;
+    handleFormChange("spendingPassword", newSpendingPassword);
+  };
+  const onEncryptMnemonicChange = (e) => {
+    const newEncryptMnemonicChange = e.target.checked;
+    console.log({ newEncryptMnemonicChange });
+    handleFormChange("encryptMnemonic", newEncryptMnemonicChange);
+  };
+  useEffect(() => {
+    if (spendingPassword) {
+      setIsValid(true);
+    } else {
+      setIsValid(mnemonicValidator(mnemonic));
+    }
+  }, [mnemonic, spendingPassword]);
 
   useEffect(() => {
-    setIsValid(mnemonicValidator(mnemonic));
-  }, [mnemonic]);
+    (async () => {
+      const serverEncryptedMnemonic = await getEncryptedMnemonicFromSession(
+        sessionKey
+      );
+      handleFormChange("encryptedMnemonic", serverEncryptedMnemonic);
+    })();
+  }, []);
   return (
     <div className="flow-content">
-      <label>Enter the 15 or 24-word wallet mnemonic seed phrase</label>
-      <input
-        type="text"
-        value={mnemonic}
-        onChange={onMnemonicChange}
-        className="input fullwidth"
-      />
+      {!isCreate && encryptedMnemonic ? (
+        <>
+          <label>Enter the your spending password</label>
+          <input
+            type="password"
+            value={spendingPassword}
+            onChange={onSpendingPasswordChange}
+            className="input fullwidth"
+          />
+        </>
+      ) : (
+        <>
+          <label>Enter the 15 or 24-word wallet mnemonic seed phrase</label>
+          <input
+            type="text"
+            value={mnemonic}
+            onChange={onMnemonicChange}
+            className="input fullwidth"
+          />
+        </>
+      )}
+      {isCreate && (
+        <div>
+          <input
+            type="checkbox"
+            name="encrypt-mnemonic"
+            id="encrypt-mnemonic"
+            checked={encryptMnemonic}
+            onChange={onEncryptMnemonicChange}
+            className="input"
+          />
+          <label htmlFor="encrypt-mnemonic">
+            Encrypt and store seed phrase
+          </label>
+        </div>
+      )}
+      {encryptMnemonic && (
+        <CreatePassphrase
+          passphrase={passphrase}
+          confirmPassphrase={confirmPassphrase}
+          handleFormChange={handleFormChange}
+          isValid={confirmPassphrase}
+          setIsValid={(newIsValid) =>
+            setIsValid({ confirmPassphrase: newIsValid })
+          }
+        />
+      )}
       {errorMsg && (
         <ErrorMessage
           dangerouslySetInnerHTML={{ __html: errorMsg }}

@@ -2,8 +2,6 @@ import styled from "@emotion/styled";
 import { useState } from "react";
 
 const PassphraseForm = styled.form`
-  max-width: 600px;
-  margin: 0 auto;
   label {
     display: block;
   }
@@ -48,7 +46,7 @@ function CreatePassphrase({
   return (
     <PassphraseForm className="flow-content">
       <div className="flow-content">
-        <label>Enter a passphrase (10 characters or more)</label>
+        <label>Enter a spending password (10 characters or more)</label>
         <input
           className="input fullwidth"
           type="password"
@@ -57,7 +55,7 @@ function CreatePassphrase({
         />
       </div>
       <div className="flow-content">
-        <label htmlFor="confirmPassphrase">Confirm passphrase</label>
+        <label htmlFor="confirmPassphrase">Confirm spending password</label>
         <input
           className="input fullwidth"
           type="password"
