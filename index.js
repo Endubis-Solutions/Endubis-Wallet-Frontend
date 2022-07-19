@@ -51,7 +51,11 @@ app.post("/connect", async (req, res) => {
     //TODO: handle invalid links (hopefully on frontend)
     const userId = userIdFromSessionKey(sessionKey);
     const userInfo = await bot.telegram.getChat(userId);
-    await writeToSession(sessionKey, { loggedInXpub: bech32xPub, userInfo });
+    await writeToSession(sessionKey, {
+      loggedInXpub: bech32xPub,
+      userInfo,
+      xpubWalletId: null,
+    });
     bot.telegram.sendMessage(
       userId,
       `🎉 You have been successfully logged in.`,
