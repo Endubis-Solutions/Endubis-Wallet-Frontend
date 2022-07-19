@@ -24,6 +24,8 @@ function EnterMnemonic({
   isCreate,
   spendingPassword,
 }) {
+  const [useSeedPhrase, setUseSeedPhrase] = useState(isCreate);
+  const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   // const [encryptMnemonic, setEncryptMnemonic] = useState(false);
   let sessionKey = new URLSearchParams(window.location.search).get(
@@ -88,6 +90,11 @@ function EnterMnemonic({
     console.log({ newEncryptMnemonicChange });
     handleFormChange("encryptMnemonic", newEncryptMnemonicChange);
   };
+  const onUseSeedPhraseChange = (e) => {
+    const newUseSeedPhrase = e.target.checked;
+    setUseSeedPhrase(!!e.target.checked);
+    newUseSeedPhrase && handleFormChange("spendingPassword", "");
+  };
   useEffect(() => {
     if (spendingPassword) {
       setIsValid(true);
@@ -98,15 +105,22 @@ function EnterMnemonic({
 
   useEffect(() => {
     (async () => {
+      setIsLoading(true);
       const serverEncryptedMnemonic = await getEncryptedMnemonicFromSession(
         sessionKey
       );
+      setIsLoading(false);
       handleFormChange("encryptedMnemonic", serverEncryptedMnemonic);
     })();
   }, []);
-  return (
+  return isLoading ? (
+    <>
+      <h1>Loading your wallet...</h1>
+      <p>This may take a minute or two.</p>
+    </>
+  ) : (
     <div className="flow-content">
-      {!isCreate && encryptedMnemonic ? (
+      {!useSeedPhrase && encryptedMnemonic ? (
         <>
           <label>Enter the your spending password</label>
           <input
@@ -115,6 +129,17 @@ function EnterMnemonic({
             onChange={onSpendingPasswordChange}
             className="input fullwidth"
           />
+          <div>
+            <input
+              type="checkbox"
+              name="enter-seed"
+              id="enter-seed"
+              checked={useSeedPhrase}
+              onChange={onUseSeedPhraseChange}
+              className="input checkbox"
+            />
+            <label htmlFor="enter-seed">Use a seed phrase</label>
+          </div>
         </>
       ) : (
         <>
@@ -125,23 +150,22 @@ function EnterMnemonic({
             onChange={onMnemonicChange}
             className="input fullwidth"
           />
+          <div>
+            <input
+              type="checkbox"
+              name="encrypt-mnemonic"
+              id="encrypt-mnemonic"
+              checked={encryptMnemonic}
+              onChange={onEncryptMnemonicChange}
+              className="input checkbox"
+            />
+            <label htmlFor="encrypt-mnemonic">
+              Encrypt and store seed phrase
+            </label>
+          </div>
         </>
       )}
-      {isCreate && (
-        <div>
-          <input
-            type="checkbox"
-            name="encrypt-mnemonic"
-            id="encrypt-mnemonic"
-            checked={encryptMnemonic}
-            onChange={onEncryptMnemonicChange}
-            className="input"
-          />
-          <label htmlFor="encrypt-mnemonic">
-            Encrypt and store seed phrase
-          </label>
-        </div>
-      )}
+      {}
       {encryptMnemonic && (
         <CreatePassphrase
           passphrase={passphrase}
