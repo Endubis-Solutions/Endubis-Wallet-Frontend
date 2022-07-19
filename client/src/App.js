@@ -3,6 +3,7 @@ import RestoreWallet from "./RestoreWallet";
 import styled from "@emotion/styled";
 import { Global, css } from "@emotion/react";
 import Send from "./Send";
+import logo from "./assets/logo.png";
 
 const GlobalStyles = css`
   :root {
@@ -88,6 +89,10 @@ const GlobalStyles = css`
   .fullwidth {
     width: 100%;
   }
+
+  .checkbox {
+    margin-right: 10px;
+  }
   .container {
     max-width: 1400px;
     margin: 0 auto;
@@ -138,7 +143,9 @@ function App() {
     <>
       <Global styles={GlobalStyles} />
       <MainHeader className="App-header">
-        <h1>🛅 Endubis Wallet</h1>
+        <h1>
+          <img src={logo} alt="Endubis logo" /> Endubis Wallet
+        </h1>
       </MainHeader>
       <main>
         {hasSessionKey && subUrl === "restore" ? (
