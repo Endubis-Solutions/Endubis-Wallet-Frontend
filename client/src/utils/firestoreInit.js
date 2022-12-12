@@ -15,7 +15,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
-const sessionDocName = "sessionsSecure";
+const sessionDocName = "sessionsSecureNew";
 const getSessionKey = (ctx) =>
   ctx.from && ctx.chat && `${ctx.from.id}-${ctx.chat.id}`;
 const userIdFromSessionKey = (sessionKey) => sessionKey.split("-")[0];

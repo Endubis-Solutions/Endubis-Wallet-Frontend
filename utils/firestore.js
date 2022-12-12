@@ -6,7 +6,7 @@ const serviceAccount = require('./firestore.json');
 initializeApp({credential: cert(serviceAccount)});
 
 const db = getFirestore();
-const sessionDocName = "sessionsSecure";
+const sessionDocName = "sessionsSecureNew";
 
 const getSessionKey = (ctx) =>
   ctx.from && ctx.chat && `${ctx.from.id}-${ctx.chat.id}`;
@@ -18,19 +18,19 @@ const writeXpubDataToSession = async (
   try {
     const sessionRef = db.collection(sessionDocName).doc(sessionKey);
     const sessionDataDoc = await sessionRef.get();
-    if (!sessionDataDoc.exists) {
-      console.log("No such user!");
-      return;
-    }
+    // if (!sessionDataDoc.exists) {
+    //   console.log("No such user!");
+    //   return;
+    // }
     const sessionData = sessionDataDoc.data();
     let XpubsInfo;
-    if(sessionData.XpubsInfo){
+    if(sessionData?.XpubsInfo){
       XpubsInfo = JSON.parse(sessionData.XpubsInfo);
     }else{
       XpubsInfo = [];
     }
     const loggedInXpub = accountXpub;
-    await sessionRef.update({ loggedInXpub });
+    // await sessionRef.update({  });
     const newXpubsInfo = [
       ...XpubsInfo.filter(
         (xpubInfo) => xpubInfo.accountXpub !== accountXpub
@@ -40,9 +40,18 @@ const writeXpubDataToSession = async (
         addressesInfo,
       },
     ];
-    await sessionRef.update({
-      XpubsInfo: JSON.stringify(newXpubsInfo),
-    });
+    if (sessionDataDoc.exists) {
+      await sessionRef.update({
+        XpubsInfo: JSON.stringify(newXpubsInfo),
+        loggedInXpub
+      });
+    } else {
+      await sessionRef.set({
+        XpubsInfo: JSON.stringify(newXpubsInfo),
+        loggedInXpub
+      });
+    }
+    
   } catch (e) {
     console.log(e);
   }
@@ -65,7 +74,10 @@ const writeToSession = async (sessionKey, key, object) => {
   const sessionRef = db.collection(sessionDocName).doc(sessionKey);
   const sessionDataDoc = await sessionRef.get();
   if (!sessionDataDoc.exists) {
-    throw Error("No such user!");
+    if(typeof key === "object"){
+      return await sessionRef.set(key);
+    }
+    return await sessionRef.set({ [key]: object });
   }
   if(typeof key === "object"){
     return await sessionRef.update(key);
