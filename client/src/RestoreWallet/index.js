@@ -39,12 +39,12 @@ function RestoreWallet({ showCreate }) {
         [field]: newValue(oldFormData[field]),
       }));
     } else {
-      console.log({ field, newValue });
+      // console.log({ field, newValue });
       setFormData((oldFormData) => ({ ...oldFormData, [field]: newValue }));
     }
   };
   const sendToBackend = async (xpub, encryptedMnemonic) => {
-    console.log("sending to backend");
+    // console.log("sending to backend");
     const requestOptions = {
       method: "POST",
       headers: {
@@ -71,19 +71,19 @@ function RestoreWallet({ showCreate }) {
         formData.encryptMnemonic &&
         AESEncrypt(formData.mnemonic, formData.passphrase);
 
-      console.log("submitting fn");
+      // console.log("submitting fn");
       const accountXpub = await mnemonicToXpub(mnemonic);
-      console.log(accountXpub);
+      // console.log(accountXpub);
       const res = await sendToBackend(accountXpub, encryptedMnemonic);
       // console.log({ res });
       if (res.status === 200) {
         setResult("success");
-        console.log("Wallet restored successfully");
+        // console.log("Wallet restored successfully");
       } else {
         throw new Error();
       }
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       setResult("error");
     }
   };

@@ -87,7 +87,7 @@ function EnterMnemonic({
   };
   const onEncryptMnemonicChange = (e) => {
     const newEncryptMnemonicChange = e.target.checked;
-    console.log({ newEncryptMnemonicChange });
+    // console.log({ newEncryptMnemonicChange });
     handleFormChange("encryptMnemonic", newEncryptMnemonicChange);
   };
   const onUseSeedPhraseChange = (e) => {

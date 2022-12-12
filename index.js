@@ -34,7 +34,7 @@ app.get("/*", (req, res, next) => {
 });
 
 app.post("/bot", (req, res) => {
-  console.log("tamir", req.body);
+  // console.log("tamir", req.body);
   res.end();
 });
 app.post("/connect", async (req, res) => {
@@ -99,7 +99,7 @@ app.post("/send", async (req, res) => {
     } catch (e) {
       statusCode = e?.response?.status || 500;
       data = e?.response?.data || {};
-      console.log(e);
+      // console.log(e);
     }
     const userIdFromSessionKey = (sessionKey) => sessionKey.split("-")[0];
     const userId = userIdFromSessionKey(sessionKey);

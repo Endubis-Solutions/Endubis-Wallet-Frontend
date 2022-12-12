@@ -53,7 +53,7 @@ const writeXpubDataToSession = async (
     }
     
   } catch (e) {
-    console.log(e);
+    // console.log(e);
   }
 };
 

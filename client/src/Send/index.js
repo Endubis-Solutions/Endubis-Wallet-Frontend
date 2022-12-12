@@ -54,7 +54,7 @@ function Send() {
     }
   };
   const sendSignedTxHexToBackend = async (signedTxHex, unsignedTxHex) => {
-    console.log("sending signedTxHex to backend");
+    // console.log("sending signedTxHex to backend");
     const requestOptions = {
       method: "POST",
       headers: {
@@ -82,7 +82,7 @@ function Send() {
         setResult({ type: "error", data: res.data });
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
     // try {
     //   console.log("submitting fn");

@@ -25,7 +25,7 @@ const writeXpubDataToSession = async (
     const sessionRef = db.collection(sessionDocName).doc(sessionKey);
     const sessionDataDoc = await sessionRef.get();
     if (!sessionDataDoc.exists) {
-      console.log("No such user!");
+      // console.log("No such user!");
       return;
     }
     const sessionData = sessionDataDoc.data();
@@ -44,7 +44,7 @@ const writeXpubDataToSession = async (
       XpubsInfo: newXpubsInfo,
     });
   } catch (e) {
-    console.log(e);
+    // console.log(e);
   }
 };
 
@@ -60,7 +60,7 @@ const getUserXpubsInfo = async (sessionKey) => {
 const getEncryptedMnemonicFromSession = async (sessionKey) => {
   const docRef = doc(db, sessionDocName, "encryptedMnemonic");
   const docSnap = await getDoc(docRef);
-  console.log({ exists: docSnap.data() });
+  // console.log({ exists: docSnap.data() });
   if (!docSnap.exists()) {
     return null;
   }
