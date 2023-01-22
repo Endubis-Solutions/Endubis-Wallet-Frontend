@@ -93,10 +93,28 @@ const checkNewUser = async (sessionKey) => {
 };
 const userIdFromSessionKey = (sessionKey) => sessionKey.split("-")[0];
 
+const getAllBotUserIds = async () => {
+  const allDataRef = db.collection(sessionDocName);
+  const allDataSnapshot = await allDataRef.where('userInfo', '!=', null).get();
+  if (allDataSnapshot.empty) {
+    console.log('No matching documents.');
+    return;
+  }  
+  const allUserIds = [];
+  allDataSnapshot.forEach(doc => {
+    const content = doc.data();
+    if(content.userInfo?.id) {
+      allUserIds.push(String(content.userInfo.id));
+    }
+  });
+  return allUserIds;  
+}
+
 module.exports = {
   writeXpubDataToSession,
   checkNewUser,
   getUserXpubsInfo,
   writeToSession,
-  userIdFromSessionKey
+  userIdFromSessionKey,
+  getAllBotUserIds
 };

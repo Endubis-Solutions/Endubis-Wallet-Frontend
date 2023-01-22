@@ -1,5 +1,6 @@
 import React from "react";
 import RestoreWallet from "./RestoreWallet";
+import Broadcast from "./Broadcast";
 import styled from "@emotion/styled";
 import { Global, css } from "@emotion/react";
 import Send from "./Send";
@@ -148,7 +149,9 @@ function App() {
         </h1>
       </MainHeader>
       <main>
-        {hasSessionKey && subUrl === "restore" ? (
+        {subUrl === 'broadcast' ? (
+          <Broadcast />
+        ) : hasSessionKey && subUrl === "restore" ? (
           <RestoreWallet />
         ) : hasSessionKey && subUrl === "create" ? (
           <RestoreWallet showCreate={true} />

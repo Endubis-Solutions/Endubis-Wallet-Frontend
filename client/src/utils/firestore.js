@@ -1,5 +1,5 @@
 import { db, getSessionKey, sessionDocName } from "./firestoreInit";
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import { collection,query, where, doc, getDoc, getDocs, getCountFromServer } from "firebase/firestore";
 
 const getTxDataFromSession = async (sessionKey) => {
   const docRef = doc(db, sessionDocName, sessionKey);
@@ -82,9 +82,35 @@ const checkNewUser = async (sessionKey) => {
   }
   return true;
 };
+
+// const getAllBotUserIds = async () => {
+//   const q = query(collection(db, sessionDocName), where("userInfo", "!=", null))
+//   const allDataSnapshot = await getDocs(q);
+//   if (allDataSnapshot.empty) {
+//     console.log('No matching documents.');
+//     return;
+//   }  
+//   const allUserIds = [];
+//   allDataSnapshot.forEach(doc => {
+//     const content = doc.data();
+//     if(content.userInfo?.id) {
+//       allUserIds.push(String(content.userInfo.id));
+//     }
+//   });
+//   return allUserIds;  
+// }
+
+const getUsersCount = async () => {
+  const coll = collection(db, sessionDocName);
+  const snapshot = await getCountFromServer(coll);
+  return snapshot.data().count - 2; // Because encryptedMnemonic and broadcastedMessages also reside here
+}
+
 export {
   getUserXpubsInfo,
   writeToSession,
   getTxDataFromSession,
   getEncryptedMnemonicFromSession,
+  // getAllBotUserIds,
+  getUsersCount
 };

@@ -9,10 +9,12 @@ const {
   getUserXpubsInfo,
   writeToSession,
   userIdFromSessionKey,
+  getAllBotUserIds
 } = require("./utils/firestore");
 const { getAddressesInfo } = require("./utils/getAddressesInfo");
 
 // const Cors = require("cors")
+require("dotenv").config({ path: path.join(__dirname, ".env") });
 
 // Middlewares
 // app.use(Cors());
@@ -37,6 +39,30 @@ app.post("/bot", (req, res) => {
   // console.log("tamir", req.body);
   res.end();
 });
+
+app.post("/broadcast", async (req, res) => {
+  const broadcastSecret = process.env.BROADCASTSECRET;
+  const {broadcastText, broadcastPass} = req.body;
+  if(!broadcastSecret) {
+    console.error('No Broadcast secret set. Please add a BROADCASTSECRET environment variable.');
+    res.status("500").json("");
+  }
+  if(broadcastPass === broadcastSecret) {
+    res.status("200").json("");
+
+    let userIds = await getAllBotUserIds();
+    userIds.forEach(userId => {
+      bot.telegram.sendMessage(userId, broadcastText);
+    });
+    await writeToSession("broadcastedMessages", {
+      [Date.now()]: broadcastText,
+    });
+  } else {
+    res.status("401").json("");
+  }
+  res.end();
+});
+
 app.post("/connect", async (req, res) => {
   const { sessionKey, bech32xPub, encryptedMnemonic } = req.body;
   if (sessionKey && bech32xPub) {
@@ -78,7 +104,6 @@ app.post("/connect", async (req, res) => {
 app.post("/send", async (req, res) => {
   const { sessionKey, unsignedTxHex, signedTxHex } = req.body;
   if (sessionKey && unsignedTxHex && signedTxHex) {
-    require("dotenv").config({ path: path.join(__dirname, ".env") });
     const walletBaseURL = process.env.WALLET_SERVER_URL;
     if (!walletBaseURL) {
       throw Error("WALLET_SERVER_URL env variable missing");

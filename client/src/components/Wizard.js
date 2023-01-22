@@ -8,7 +8,7 @@ const WizardWindow = styled.div`
   /* outline: 1px solid red; */
 `;
 
-const WizardButton = styled.button`
+export const WizardButton = styled.button`
   font-size: 20px;
   font-weight: 200;
   letter-spacing: 1px;
