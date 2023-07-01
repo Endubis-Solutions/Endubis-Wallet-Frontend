@@ -104,12 +104,12 @@ app.post("/connect", async (req, res) => {
 app.post("/send", async (req, res) => {
   const { sessionKey, unsignedTxHex, signedTxHex } = req.body;
   if (sessionKey && unsignedTxHex && signedTxHex) {
-    const walletBaseURL = process.env.WALLET_SERVER_URL;
-    if (!walletBaseURL) {
-      throw Error("WALLET_SERVER_URL env variable missing");
+    const txSubmitURL = process.env.TX_SUBMIT_URL;
+    if (!txSubmitURL) {
+      throw Error("TX_SUBMIT_URL env variable missing");
     }
     let txBuffer = Buffer.from(signedTxHex, "hex");
-    const submitExternalUrl = `${walletBaseURL}/proxy/transactions`;
+    const submitExternalUrl = `${txSubmitURL}/proxy/transactions`;
     const config = {
       headers: {
         "Content-Type": "application/octet-stream",
