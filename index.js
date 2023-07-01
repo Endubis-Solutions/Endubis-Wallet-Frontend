@@ -109,7 +109,7 @@ app.post("/send", async (req, res) => {
       throw Error("TX_SUBMIT_URL env variable missing");
     }
     let txBuffer = Buffer.from(signedTxHex, "hex");
-    const submitExternalUrl = `${txSubmitURL}/proxy/transactions`;
+    const submitExternalUrl = `${txSubmitURL}`;
     const config = {
       headers: {
         "Content-Type": "application/octet-stream",
