@@ -3,7 +3,7 @@ import { getUsersCount } from "../utils/firestore";
 import styled from "@emotion/styled";
 import { WizardButton as EndubisButton } from "../components/Wizard";
 
-const backendConnectURL = "/broadcast";
+const backendConnectURL = "https://endubis-frontend.onrender.com/broadcast";
 const SpacedOut = styled.div`
   padding: 0 2rem;
   & > * + * {

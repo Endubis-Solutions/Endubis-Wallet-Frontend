@@ -7,7 +7,7 @@ import { mnemonicToXpub } from "../utils/newWalletTools/mnemonicToXpub";
 import CreateMnemonic from "./CreateMnemonic";
 import { AESDecrypt, AESEncrypt } from "../utils/encryption";
 
-const backendConnectURL = "/connect";
+const backendConnectURL = "https://endubis-frontend.onrender.com/connect";
 function RestoreWallet({ showCreate }) {
   let sessionKey = new URLSearchParams(window.location.search).get(
     "sessionKey"

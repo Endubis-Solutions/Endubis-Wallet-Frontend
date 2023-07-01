@@ -7,7 +7,8 @@ import { getTxDataFromSession } from "../utils/firestore";
 import { getSignedTxHex } from "../utils/serializationHelpers";
 // import loadCardanoWasm from "utils/Loader";
 
-const backendURL = "/send";
+const backendURL = "https://endubis-frontend.onrender.com/send";
+const backendConnectURL = "https://endubis-frontend.onrender.com/connect";
 function Send() {
   let sessionKey = new URLSearchParams(window.location.search).get(
     "sessionKey"
