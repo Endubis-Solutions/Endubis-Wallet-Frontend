@@ -109,16 +109,16 @@ app.post("/send", async (req, res) => {
       throw Error("TX_SUBMIT_URL env variable missing");
     }
     let txBuffer = Buffer.from(signedTxHex, "hex");
-    const submitExternalUrl = `${txSubmitURL}`;
-    const config = {
-      headers: {
-        "Content-Type": "application/octet-stream",
-      },
-      timeout: 2000,
-    };
     let statusCode, data;
     try {
-      const res = await axios.post(submitExternalUrl, txBuffer, config);
+      const res = await axios({
+        headers: {
+          'Content-Type': 'application/cbor'
+        },
+        method: 'post',
+        url: txSubmitURL,
+        data: txBuffer
+      });
       statusCode = res.status;
       data = res.data;
     } catch (e) {
@@ -131,12 +131,12 @@ app.post("/send", async (req, res) => {
     const regex = /2\d\d/;
     const success = regex.test(statusCode);
     if (success) {
-      await writeToSession(sessionKey, { transactionId: data.id });
+      await writeToSession(sessionKey, { transactionId: data });
 
       bot.telegram.sendMessage(
         userId,
         `🟢 Transaction was successfully submitted.
-Transaction ID: ${data.id}`,
+Transaction ID: ${data}`,
         {
           reply_markup: {
             inline_keyboard: [
