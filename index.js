@@ -65,6 +65,7 @@ app.post("/broadcast", async (req, res) => {
 
 app.post("/connect", async (req, res) => {
   const { sessionKey, bech32xPub, encryptedMnemonic } = req.body;
+  console.log("connecting", {sessionKey, bech32xPub, encryptedMnemonic})
   if (sessionKey && bech32xPub) {
     if (encryptedMnemonic) {
       //TODO: how about multiple accounts
