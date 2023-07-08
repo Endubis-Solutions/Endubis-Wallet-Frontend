@@ -30,10 +30,10 @@ app.use((req, res, next) => {
   // console.log(req);
   next();
 });
-app.use(express.static(path.resolve(__dirname, "./client/build")));
-app.get("/*", (req, res, next) => {
-  res.sendFile(path.join(__dirname, "./client/build", "index.html"));
-});
+// app.use(express.static(path.resolve(__dirname, "./client/build")));
+// app.get("/*", (req, res, next) => {
+//   res.sendFile(path.join(__dirname, "./client/build", "index.html"));
+// });
 
 app.post("/bot", (req, res) => {
   // console.log("tamir", req.body);
