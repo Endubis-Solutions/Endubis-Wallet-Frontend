@@ -4,9 +4,9 @@ const { getFirestore } = require("firebase-admin/firestore");
 const serviceAccount = require('./firestore.json');
 
 initializeApp({credential: cert(serviceAccount)});
-
+require("dotenv").config();
 const db = getFirestore();
-const sessionDocName = "sessionsSecureNew";
+const sessionDocName = process.env.SESSION_DOC_NAME || 'sessionsSecureNew';
 
 const getSessionKey = (ctx) =>
   ctx.from && ctx.chat && `${ctx.from.id}-${ctx.chat.id}`;
