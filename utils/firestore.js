@@ -1,7 +1,7 @@
 const { initializeApp, cert } = require("firebase-admin/app");
 
 const { getFirestore } = require("firebase-admin/firestore");
-const serviceAccount = require('./firestore.json');
+const serviceAccount = require('../firestore_credentials.json');
 
 initializeApp({credential: cert(serviceAccount)});
 require("dotenv").config();

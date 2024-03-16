@@ -6,7 +6,7 @@ export const loadCardanoWasm = async () => {
   }
 
   cardanoWasm = await import(
-    "cardano-serialization-lib-asmjs/cardano_serialization_lib"
+    "@emurgo/cardano-serialization-lib-asmjs/cardano_serialization_lib"
   );
   return cardanoWasm;
 };

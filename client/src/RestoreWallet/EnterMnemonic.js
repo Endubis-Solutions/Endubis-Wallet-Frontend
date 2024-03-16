@@ -122,7 +122,7 @@ function EnterMnemonic({
     <div className="flow-content">
       {!useSeedPhrase && encryptedMnemonic ? (
         <>
-          <label>Enter the your spending password</label>
+          <label>Enter your spending password</label>
           <input
             type="password"
             value={spendingPassword}
@@ -138,7 +138,7 @@ function EnterMnemonic({
               onChange={onUseSeedPhraseChange}
               className="input checkbox"
             />
-            <label htmlFor="enter-seed">Use a seed phrase</label>
+            <label htmlFor="enter-seed">Use my seed phrase</label>
           </div>
         </>
       ) : (

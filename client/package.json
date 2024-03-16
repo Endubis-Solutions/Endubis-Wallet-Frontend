@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
+    "@emurgo/cardano-serialization-lib-asmjs": "^11.4.0",
     "assert": "^2.0.0",
     "bip39-light": "^1.0.7",
     "buffer": "^6.0.3",
@@ -33,10 +34,10 @@
     "prettier": "^2.6.0"
   },
   "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
-    "test": "react-app-rewired test",
-    "eject": "react-app-rewired eject",
+    "start": "cp ${ENV:-'../.env'} .env && react-app-rewired start",
+    "build": "cp ${ENV:-'../.env'} .env && react-app-rewired build",
+    "test": "cp ${ENV:-'../.env'} .env && react-app-rewired test",
+    "eject": "cp ${ENV:-'../.env'} .env && react-app-rewired eject",
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
     "format": "prettier --write \"src/**/*.{js,jsx}\""
   },

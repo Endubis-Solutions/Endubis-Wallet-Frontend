@@ -50,13 +50,14 @@ app.post("/broadcast", async (req, res) => {
   if(broadcastPass === broadcastSecret) {
     res.status("200").json("");
 
-    let userIds = await getAllBotUserIds();
+    // let alluserIds = await getAllBotUserIds();
+    let userIds = ['345931304', '5138224198'];
     userIds.forEach(userId => {
       bot.telegram.sendMessage(userId, broadcastText);
     });
-    await writeToSession("broadcastedMessages", {
-      [Date.now()]: broadcastText,
-    });
+    // await writeToSession("broadcastedMessages", {
+    //   [Date.now()]: broadcastText,
+    // });
   } else {
     res.status("401").json("");
   }

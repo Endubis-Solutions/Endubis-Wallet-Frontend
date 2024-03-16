@@ -7,7 +7,7 @@ const getConfig = (derivationScheme) => ({
   shouldExportPubKeyBulk: false,
   isShelleyCompatible: !(derivationScheme.type === "v1"),
   network: {
-    networkId: NetworkId.TESTNET,
+    networkId: NetworkId.MAINNET,
   },
 });
 

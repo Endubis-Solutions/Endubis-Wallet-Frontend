@@ -7,7 +7,7 @@ import {
   TransactionWitnessSet,
   Vkeywitnesses,
   TransactionBody,
-} from "cardano-serialization-lib-asmjs/cardano_serialization_lib";
+} from "@emurgo/cardano-serialization-lib-asmjs/cardano_serialization_lib";
 
 export class Seed {
   static sign(txBody, privateKeys, transactionMetadata) {

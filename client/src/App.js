@@ -149,7 +149,7 @@ function App() {
         </h1>
       </MainHeader>
       <main>
-        {subUrl === 'broadcast' ? (
+        {subUrl === 'admin-broadcast' ? (
           <Broadcast />
         ) : hasSessionKey && subUrl === "restore" ? (
           <RestoreWallet />

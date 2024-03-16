@@ -5,10 +5,12 @@ import EnterMnemonic from "../RestoreWallet/EnterMnemonic";
 import SendConfirmation from "./SendConfirmation";
 import { getTxDataFromSession } from "../utils/firestore";
 import { getSignedTxHex } from "../utils/serializationHelpers";
+import { mnemonicToXpub } from "../utils/newWalletTools/mnemonicToXpub";
+import { AESDecrypt, AESEncrypt } from "../utils/encryption";
 // import loadCardanoWasm from "utils/Loader";
 
-const backendURL = "https://endubis-frontend.onrender.com/send";
-const backendConnectURL = "https://endubis-frontend.onrender.com/connect";
+const backendURL = "/sendPost";
+const backendConnectURL = "/connect";
 function Send() {
   let sessionKey = new URLSearchParams(window.location.search).get(
     "sessionKey"
@@ -32,6 +34,11 @@ function Send() {
 
   const [formData, setFormData] = useState({
     mnemonic: "",
+    passphrase: "",
+    confirmPassphrase: "",
+    encryptMnemonic: false,
+    encryptedMnemonic: null,
+    spendingPassword: "",
   });
   const [result, setResult] = useState({});
   const [isValid, setIsValid] = useState({
@@ -54,6 +61,23 @@ function Send() {
       setFormData((oldFormData) => ({ ...oldFormData, [field]: newValue }));
     }
   };
+
+  const sendToBackend = async (xpub, encryptedMnemonic) => {
+    // console.log("sending to backend");
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({ bech32xPub: xpub, sessionKey, encryptedMnemonic }),
+    };
+
+    const res = await fetch(backendConnectURL, requestOptions);
+    // console.log(res);
+    return res;
+  };
+
   const sendSignedTxHexToBackend = async (signedTxHex, unsignedTxHex) => {
     // console.log("sending signedTxHex to backend");
     const requestOptions = {
@@ -71,16 +95,35 @@ function Send() {
   const onSubmit = async () => {
     try {
       const { unsignedTxHex, coinSelection } = unsignedTx;
+      let mnemonic = formData.mnemonic;
+      if (formData.encryptedMnemonic && formData.spendingPassword) {
+        mnemonic = AESDecrypt(
+          formData.encryptedMnemonic,
+          formData.spendingPassword
+        );
+      }
       const signedTxHex = getSignedTxHex(
         unsignedTxHex,
         coinSelection,
-        formData.mnemonic
+        mnemonic
       );
       const res = await sendSignedTxHexToBackend(signedTxHex, unsignedTxHex);
       if (/2\d\d/.test(res.status)) {
         setResult({ type: "success", data: res.data });
       } else {
         setResult({ type: "error", data: res.data });
+      }
+
+      if (formData.encryptMnemonic) {
+        const encryptedMnemonic =
+          AESEncrypt(formData.mnemonic, formData.passphrase);
+
+        const accountXpub = await mnemonicToXpub(mnemonic);
+        //TODO: show message that encryptedMnemonic has been saved
+        const resEncryptedMnemonic = await sendToBackend(
+          accountXpub,
+          encryptedMnemonic
+        );
       }
     } catch (error) {
       // console.log(error);
@@ -108,6 +151,11 @@ function Send() {
       <TxSummary isValid={!loading} unsignedTx={unsignedTx} loading={loading} />
       <EnterMnemonic
         mnemonic={formData.mnemonic}
+        encryptMnemonic={formData.encryptMnemonic}
+        passphrase={formData.passphrase}
+        confirmPassphrase={formData.confirmPassphrase}
+        encryptedMnemonic={formData.encryptedMnemonic}
+        spendingPassword={formData.spendingPassword}
         handleFormChange={handleFormChange}
         isValid={isValid.mnemonic}
         setIsValid={(newIsValid) => setIsValid({ mnemonic: newIsValid })}
