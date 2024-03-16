@@ -28,6 +28,6 @@ yarn-debug.log*
 yarn-error.log*
 app*log
 
-
-client/build
+firestore_credentials.json
+client/build*
 client/node_modules
