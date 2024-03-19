@@ -9,7 +9,7 @@ const {
   getUserXpubsInfo,
   writeToSession,
   userIdFromSessionKey,
-  getAllBotUserIds
+  getAllBotUserIds,
 } = require("./utils/firestore");
 const { getAddressesInfo } = require("./utils/getAddressesInfo");
 
@@ -42,18 +42,26 @@ app.post("/bot", (req, res) => {
 
 app.post("/broadcast", async (req, res) => {
   const broadcastSecret = process.env.BROADCASTSECRET;
-  const {broadcastText, broadcastPass} = req.body;
-  if(!broadcastSecret) {
-    console.error('No Broadcast secret set. Please add a BROADCASTSECRET environment variable.');
+  let { broadcastText, broadcastPass } = req.body;
+  if (!broadcastSecret) {
+    console.error(
+      "No Broadcast secret set. Please add a BROADCASTSECRET environment variable."
+    );
     res.status("500").json("");
-  }
-  if(broadcastPass === broadcastSecret) {
+  } else if (broadcastPass === broadcastSecret) {
     res.status("200").json("");
 
     let allUserIds = await getAllBotUserIds();
-    // let testuserIds = ['345931304', '5138224198'];
-    allUserIds.forEach(userId => {
-      bot.telegram.sendMessage(userId, broadcastText);
+    // let testuserIds = ['345931304','467338947', '5138224198'];
+    allUserIds.forEach((userId) => {
+      try {
+        bot.telegram
+          .sendMessage(userId, broadcastText, { parse_mode: "HTML" })
+          .then((r) => console.log(`sent to ${userId}`))
+          .catch((e) => console.log(e));
+      } catch (e) {
+        console.log(e);
+      }
     });
     await writeToSession("broadcastedMessages", {
       [Date.now()]: broadcastText,
@@ -66,7 +74,7 @@ app.post("/broadcast", async (req, res) => {
 
 app.post("/connect", async (req, res) => {
   const { sessionKey, bech32xPub, encryptedMnemonic } = req.body;
-  console.log("connecting", {sessionKey, bech32xPub, encryptedMnemonic})
+  console.log("connecting", { sessionKey, bech32xPub, encryptedMnemonic });
   if (sessionKey && bech32xPub) {
     if (encryptedMnemonic) {
       //TODO: how about multiple accounts
@@ -115,11 +123,11 @@ app.post("/send", async (req, res) => {
     try {
       const res = await axios({
         headers: {
-          'Content-Type': 'application/cbor'
+          "Content-Type": "application/cbor",
         },
-        method: 'post',
+        method: "post",
         url: txSubmitURL,
-        data: txBuffer
+        data: txBuffer,
       });
       statusCode = res.status;
       data = res.data;

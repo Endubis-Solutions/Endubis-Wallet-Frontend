@@ -35,7 +35,7 @@
   },
   "scripts": {
     "start": "cp ${ENV:-'../.env'} .env && react-app-rewired start",
-    "build": "cp ${ENV:-'../.env'} .env && react-app-rewired build",
+    "build": "cp ${ENV:-'../.env'} .env && GENERATE_SOURCEMAP=false react-app-rewired build",
     "test": "cp ${ENV:-'../.env'} .env && react-app-rewired test",
     "eject": "cp ${ENV:-'../.env'} .env && react-app-rewired eject",
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
