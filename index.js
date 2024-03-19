@@ -13,11 +13,18 @@ const {
 } = require("./utils/firestore");
 const { getAddressesInfo } = require("./utils/getAddressesInfo");
 
-// const Cors = require("cors")
+const Cors = require("cors")
 require("dotenv").config({ path: path.join(__dirname, ".env") });
 
+const corsOptions = {
+  origin: 'https://endubis.io', // or use '*' to allow any origin
+  methods: ['POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Accept'],
+  optionsSuccessStatus: 200
+};
+
 // Middlewares
-// app.use(Cors());
+app.use(Cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
