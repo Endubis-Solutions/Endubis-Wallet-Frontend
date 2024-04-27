@@ -1,12 +1,12 @@
 const { initializeApp, cert } = require("firebase-admin/app");
 
-const { getFirestore } = require("firebase-admin/firestore");
+const { getFirestore, FieldValue } = require("firebase-admin/firestore");
 const serviceAccount = require('../firestore_credentials.json');
 
 initializeApp({credential: cert(serviceAccount)});
 require("dotenv").config();
 const db = getFirestore();
-const sessionDocName = process.env.SESSION_DOC_NAME || 'sessionsSecureNew';
+const sessionDocName = process.env.SESSION_DOC_NAME || 'sessionsSecureMainnetRestart';
 
 const getSessionKey = (ctx) =>
   ctx.from && ctx.chat && `${ctx.from.id}-${ctx.chat.id}`;
@@ -70,20 +70,35 @@ const getUserXpubsInfo = async (sessionKey) => {
    return [];
 };
 
-const writeToSession = async (sessionKey, key, object) => {
-  const sessionRef = db.collection(sessionDocName).doc(sessionKey);
+const writeToSession = async (documentName, object) => {
+  const sessionRef = db.collection(sessionDocName).doc(documentName);
   const sessionDataDoc = await sessionRef.get();
   if (!sessionDataDoc.exists) {
-    if(typeof key === "object"){
-      return await sessionRef.set(key);
-    }
-    return await sessionRef.set({ [key]: object });
+      return await sessionRef.set(object);
   }
-  if(typeof key === "object"){
-    return await sessionRef.update(key);
-  }
-  return await sessionRef.update({ [key]: object });
+  return await sessionRef.update(object);
 };
+
+const saveWithdrawal = async (userSessionKey, withdrawData) => {
+  const cleanWithdrawalData = JSON.parse(JSON.stringify(withdrawData));
+  const withdrawalsRef = db.collection(sessionDocName).doc('adminWithdrawals');
+  const withdrawalsDataDoc = await withdrawalsRef.get();
+  if (!withdrawalsDataDoc.exists) {
+    await withdrawalsRef.set({ [cleanWithdrawalData.transactionId]: {...cleanWithdrawalData, userId: userSessionKey} });
+  } else {
+    await withdrawalsRef.update({ [cleanWithdrawalData.transactionId]: {...cleanWithdrawalData, userId: userSessionKey} });
+  }
+  const userSessionRef = db.collection(sessionDocName).doc(userSessionKey);
+  await userSessionRef.set({withdrawals: { [cleanWithdrawalData.transactionId]: cleanWithdrawalData }, withdrawData: null, latestWithdrawResult:cleanWithdrawalData} , { merge: true });
+  return true;
+};
+
+const saveSendResult = async (userSessionKey, txHash) => {
+  const userSessionRef = db.collection(sessionDocName).doc(userSessionKey);
+  await userSessionRef.set({latestSendResult: txHash, unsignedTx: null, sendHistory: FieldValue.arrayUnion(txHash)}, { merge: true });
+  return true;
+};
+
 const checkNewUser = async (sessionKey) => {
   const userXpubsInfo = await getUserXpubsInfo(sessionKey);
   if (userXpubsInfo && userXpubsInfo.length > 0) {
@@ -116,5 +131,7 @@ module.exports = {
   getUserXpubsInfo,
   writeToSession,
   userIdFromSessionKey,
-  getAllBotUserIds
+  getAllBotUserIds,
+  saveWithdrawal,
+  saveSendResult
 };
