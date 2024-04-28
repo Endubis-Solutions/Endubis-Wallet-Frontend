@@ -24,6 +24,7 @@ const corsOptions = {
   allowedHeaders: ["Content-Type", "Accept"],
   optionsSuccessStatus: 200,
 };
+const fetch = require("cross-fetch");
 
 // Middlewares
 app.use(Cors(corsOptions));
@@ -35,10 +36,6 @@ app.listen(port, () => console.log("Listening on port " + port));
 
 // ++++++++++++++++ HTTP METHODS +++++++++++++++++++ //
 
-app.use((req, res, next) => {
-  // console.log(req);
-  next();
-});
 // app.use(express.static(path.resolve(__dirname, "./client/build")));
 // app.get("/*", (req, res, next) => {
 //   res.sendFile(path.join(__dirname, "./client/build", "index.html"));
@@ -47,6 +44,45 @@ app.use((req, res, next) => {
 app.post("/bot", (req, res) => {
   // console.log("tamir", req.body);
   res.end();
+});
+
+app.post("/utxo", async (req, res) => {
+  // https://explorer2.adalite.io/api/bulk/addresses/utxo
+  // console.log("tamir", req.body);
+  try {
+   
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(req.body),
+    };
+    const response = await fetch('https://explorer2.adalite.io/api/bulk/addresses/utxo', requestOptions).then((res) => res.json());
+    
+    res.json(response);
+} catch (error) {
+    console.error('Error posting to the API:', error);
+    res.status(500).send('Failed to post data');
+}
+res.end();
+});
+
+app.post("/summary", async (req, res) => {
+  try {
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(req.body),
+    };
+    const response = await fetch('https://explorer2.adalite.io/api/bulk/addresses/summary', requestOptions).then((res) => res.json());
+   
+    res.json(response);
+} catch (error) {
+    console.error('Error posting to the API:', error);
+    res.status(500).send('Failed to post data');
+}
+res.end();
+  // https://explorer2.adalite.io/api/bulk/addresses/summary
+  // console.log("tamir", req.body);
 });
 
 app.post("/broadcast", async (req, res) => {
@@ -186,8 +222,13 @@ app.post("/send", async (req, res) => {
         }
       );
       // await writeToSession(sessionKey, { transactionId: data });
-      await saveSendResult(sessionKey, txHash );
-
+      const sendResult = {
+        transactionId: txHash, 
+        amountLovelace, 
+        receiverAddress
+      };
+      await saveSendResult(sessionKey, sendResult);
+      
     } else {
       bot.telegram.sendMessage(
         userId,
