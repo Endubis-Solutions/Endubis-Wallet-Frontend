@@ -356,13 +356,7 @@ ${
                     text: "Check on Cardanoscan",
                     url: `https://cardanoscan.io/transaction/${txHash}`,
                   },
-                ],
-                [
-                  {
-                    text: "🏠 Go To Your Account",
-                    callback_data: "back-to-menu",
-                  },
-                ],
+                ]
               ],
             },
             parse_mode: "HTML",
