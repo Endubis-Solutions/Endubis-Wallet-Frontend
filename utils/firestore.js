@@ -89,13 +89,21 @@ const saveWithdrawal = async (userSessionKey, withdrawData) => {
     await withdrawalsRef.update({ [cleanWithdrawalData.transactionId]: {...cleanWithdrawalData, userId: userSessionKey} });
   }
   const userSessionRef = db.collection(sessionDocName).doc(userSessionKey);
-  await userSessionRef.set({withdrawals: { [cleanWithdrawalData.transactionId]: cleanWithdrawalData }, withdrawData: null, latestWithdrawResult:cleanWithdrawalData} , { merge: true });
+  await userSessionRef.set({withdrawals: { [cleanWithdrawalData.transactionId]: cleanWithdrawalData }, withdrawData: null, latestWithdrawResult: cleanWithdrawalData} , { merge: true });
   return true;
 };
 
-const saveSendResult = async (userSessionKey, txHash) => {
+const saveSendResult = async (userSessionKey, sendResult) => {
+  const cleanSendResult = JSON.parse(JSON.stringify(sendResult));
+  const allSendResultsRef = db.collection(sessionDocName).doc('allSendHistory');
+  const allSendResultsDataDoc = await allSendResultsRef.get();
+  if (!allSendResultsDataDoc.exists) {
+    await allSendResultsRef.set({ [cleanSendResult.transactionId]: {...cleanSendResult, userId: userSessionKey} });
+  } else {
+    await allSendResultsRef.update({ [cleanSendResult.transactionId]: {...cleanSendResult, userId: userSessionKey} });
+  }
   const userSessionRef = db.collection(sessionDocName).doc(userSessionKey);
-  await userSessionRef.set({latestSendResult: txHash, unsignedTx: null, sendHistory: FieldValue.arrayUnion(txHash)}, { merge: true });
+  await userSessionRef.set({latestSendResult: sendResult, unsignedTx: null, sendHistory: { [cleanSendResult.transactionId]: cleanSendResult }}, { merge: true });
   return true;
 };
 
