@@ -286,7 +286,7 @@ app.post("/withdraw", async (req, res) => {
     const success = regex.test(statusCode);
     if (success) {
       const txHash = data;
-      const feeData = fee ? `\n<b>Txn Fee:</b> <i>${fee / 1000000} ada</i>` : ``;
+      const feeData = fee ? `<b>Txn Fee:</b> <i>${fee / 1000000} ada</i>` : ``;
       bot.telegram.sendMessage(
         userId,
         `🟢 Withdrawal Successfully Submitted
@@ -330,31 +330,31 @@ ${
         bot.telegram.sendMessage(
           adminId,
           `🟢 New Withdrawal Request Received
-  Withdrawal Details:
-  <b>Withdrawal ID (TxID):</b>
-  <code>${txHash}</code>
-  
-  ${feeData}
-  <b>Withdrawal Request:</b> <i>${amountInCurrency} ${currency}</i>
-  <b>Withdrawn ADA:</b> <i>${amountAda} ada</i>
-  <b>Withdrawal Method:</b> <i>${withdrawMethod}</i>
-  <b>Withdrawal Phone Number:</b> <i>${phone}</i>
-  <b>User Id:</b> <i>${userId}</i>
-  <b>Date Received</b> <i>${new Date().toString()}</i>
-  ${
-    withdrawMethod === "telebirr"
-      ? `<b>Receivable (in ETB):</b> <i>${Math.ceil(amountAda * adaToEtbRate)}</i>`
-      : withdrawMethod == "mpesa"
-      ? `<b>Receivable (in KSh):</b> <i>${Math.ceil(amountAda * adaToKesRate)}</i>`
-      : ""
-  }`,
+Withdrawal Details:
+<b>Withdrawal ID (TxID):</b>
+<code>${txHash}</code>
+
+${feeData}
+<b>Withdrawal Request:</b> <i>${amountInCurrency} ${currency}</i>
+<b>Withdrawn ADA:</b> <i>${amountAda} ada</i>
+<b>Withdrawal Method:</b> <i>${withdrawMethod}</i>
+<b>Withdrawal Phone Number:</b> <i>${phone}</i>
+<b>User Id:</b> <i>${userId}</i>
+<b>Date Received</b> <i>${new Date().toString()}</i>
+${
+  withdrawMethod === "telebirr"
+    ? `<b>Receivable (in ETB):</b> <i>${Math.ceil(amountAda * adaToEtbRate)}</i>`
+    : withdrawMethod == "mpesa"
+    ? `<b>Receivable (in KSh):</b> <i>${Math.ceil(amountAda * adaToKesRate)}</i>`
+    : ""
+}`,
           {
             reply_markup: {
               inline_keyboard: [
                 [
                   {
-                    text: "More Details",
-                    callback_data: "withdraw-txnid",
+                    text: "Check on Cardanoscan",
+                    url: `https://cardanoscan.io/transaction/${txHash}`,
                   },
                 ],
                 [
