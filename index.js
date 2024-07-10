@@ -2,7 +2,7 @@ const { default: axios } = require("axios");
 const express = require("express");
 const path = require("path");
 const app = express();
-const port = process.env.PORT || 5005;
+const port = process.env.PORT || 5009;
 const bot = require("./botSession");
 const {
   writeXpubDataToSession,
@@ -47,7 +47,7 @@ app.post("/bot", (req, res) => {
 });
 
 app.post("/utxo", async (req, res) => {
-  // https://explorer2.adalite.io/api/bulk/addresses/utxo
+  // https://explorer-preprod.adalite.io/api/bulk/addresses/utxo
   // console.log("tamir", req.body);
   try {
    
@@ -56,7 +56,7 @@ app.post("/utxo", async (req, res) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(req.body),
     };
-    const response = await fetch('https://explorer2.adalite.io/api/bulk/addresses/utxo', requestOptions).then((res) => res.json());
+    const response = await fetch('https://explorer-preprod.adalite.io/api/bulk/addresses/utxo', requestOptions).then((res) => res.json());
     
     res.json(response);
 } catch (error) {
@@ -73,7 +73,7 @@ app.post("/summary", async (req, res) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(req.body),
     };
-    const response = await fetch('https://explorer2.adalite.io/api/bulk/addresses/summary', requestOptions).then((res) => res.json());
+    const response = await fetch('https://explorer-preprod.adalite.io/api/bulk/addresses/summary', requestOptions).then((res) => res.json());
    
     res.json(response);
 } catch (error) {
@@ -81,7 +81,7 @@ app.post("/summary", async (req, res) => {
     res.status(500).send('Failed to post data');
 }
 res.end();
-  // https://explorer2.adalite.io/api/bulk/addresses/summary
+  // https://explorer-preprod.adalite.io/api/bulk/addresses/summary
   // console.log("tamir", req.body);
 });
 
@@ -354,7 +354,7 @@ ${
                 [
                   {
                     text: "Check on Cardanoscan",
-                    url: `https://cardanoscan.io/transaction/${txHash}`,
+                    url: `https://preprod.cardanoscan.io/transaction/${txHash}`,
                   },
                 ]
               ],
