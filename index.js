@@ -19,7 +19,7 @@ const Cors = require("cors");
 require("dotenv").config({ path: path.join(__dirname, ".env") });
 
 const corsOptions = {
-  origin: "https://endubis.io", // or use '*' to allow any origin
+  origin: "https://www.srv500522.hstgr.cloud", // or use '*' to allow any origin
   methods: ["POST", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Accept"],
   optionsSuccessStatus: 200,
@@ -36,10 +36,10 @@ app.listen(port, () => console.log("Listening on port " + port));
 
 // ++++++++++++++++ HTTP METHODS +++++++++++++++++++ //
 
-// app.use(express.static(path.resolve(__dirname, "./client/build")));
-// app.get("/*", (req, res, next) => {
-//   res.sendFile(path.join(__dirname, "./client/build", "index.html"));
-// });
+app.use(express.static(path.resolve(__dirname, "./client/build")));
+app.get("/*", (req, res, next) => {
+  res.sendFile(path.join(__dirname, "./client/build", "index.html"));
+});
 
 app.post("/bot", (req, res) => {
   // console.log("tamir", req.body);
